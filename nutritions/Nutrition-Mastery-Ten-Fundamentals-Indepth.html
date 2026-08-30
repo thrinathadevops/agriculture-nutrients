@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plant Nutrition Mastery — In-Depth Field Reference</title>
+<style>
+  :root{
+    --ink:#1a2621;        /* deep pine ink */
+    --ink-soft:#3d4a43;
+    --paper:#f6f3ea;      /* warm field paper */
+    --paper-2:#efeadb;
+    --soil:#6b4f33;       /* topsoil brown */
+    --soil-deep:#3e2c1a;
+    --leaf:#3f6b3a;       /* healthy leaf */
+    --leaf-bright:#5c9350;
+    --clay:#b06a3e;       /* laterite / clay */
+    --lime:#d9d2b8;       /* calcareous pale */
+    --gold:#c8912b;       /* marigold accent */
+    --sky:#3a6d78;        /* water teal */
+    --rust:#a8432a;       /* warning / toxicity */
+    --line:#d6cdb6;
+    --shadow:rgba(40,30,15,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 12% 8%, #efeadb 0%, transparent 40%),
+      var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    line-height:1.62;
+    font-size:18px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:940px;margin:0 auto;padding:0 26px}
+
+  /* ---------- Masthead ---------- */
+  header.masthead{
+    background:
+      linear-gradient(180deg, rgba(26,38,33,.94), rgba(26,38,33,.9)),
+      repeating-linear-gradient(135deg, #24352d 0 14px, #223029 14px 28px);
+    color:var(--paper);
+    padding:64px 0 52px;
+    border-bottom:5px solid var(--gold);
+  }
+  .masthead .wrap{position:relative}
+  .eyebrow{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    text-transform:uppercase;letter-spacing:.34em;
+    font-size:12px;font-weight:700;color:var(--gold);
+    margin:0 0 18px;
+  }
+  h1.title{
+    font-size:clamp(38px,6.4vw,68px);
+    line-height:1.02;margin:0 0 10px;font-weight:800;letter-spacing:-.5px;
+  }
+  h1.title small{display:block;font-size:.34em;font-weight:600;letter-spacing:.02em;color:#cdd8c9;margin-top:14px;line-height:1.4}
+  .credit{font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px;color:#b9c6b6;margin-top:26px;line-height:1.7}
+  .credit b{color:var(--paper)}
+
+  /* ---------- reading note ---------- */
+  .readnote{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-left:5px solid var(--gold);
+    padding:22px 26px;margin:40px 0;border-radius:4px;
+    font-size:16.5px;
+  }
+  .readnote p{margin:.5em 0}
+  .readnote strong{color:var(--soil-deep)}
+
+  /* ---------- Table of contents ---------- */
+  nav.toc{margin:46px 0 10px}
+  nav.toc h2{font-family:"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:13px;color:var(--ink-soft);border-bottom:2px solid var(--ink);padding-bottom:8px}
+  nav.toc ol{list-style:none;counter-reset:toc;padding:0;margin:18px 0;display:grid;grid-template-columns:1fr 1fr;gap:2px 30px}
+  nav.toc li{counter-increment:toc;padding:9px 0;border-bottom:1px dotted var(--line)}
+  nav.toc a{color:var(--ink);text-decoration:none;display:flex;align-items:baseline;gap:12px;font-size:16px}
+  nav.toc a::before{content:counter(toc,decimal-leading-zero);font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;color:var(--clay);font-size:13px;min-width:26px}
+  nav.toc a:hover{color:var(--clay)}
+  @media(max-width:640px){nav.toc ol{grid-template-columns:1fr}}
+
+  /* ---------- Fundamental blocks ---------- */
+  section.fund{padding:56px 0 20px;border-top:1px solid var(--line)}
+  .fnum{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:58px;height:58px;border-radius:50%;
+    background:var(--ink);color:var(--gold);font-weight:800;font-size:22px;
+    margin-bottom:18px;box-shadow:0 4px 14px var(--shadow);
+  }
+  section.fund h2{
+    font-size:clamp(28px,4.4vw,42px);line-height:1.08;margin:0 0 6px;font-weight:800;letter-spacing:-.3px;
+  }
+  .marathi{font-family:"Nirmala UI","Kohinoor Devanagari",sans-serif;color:var(--leaf);font-size:.62em;font-weight:600;display:block;margin-top:6px}
+  .standfirst{font-size:20px;color:var(--ink-soft);font-style:italic;margin:14px 0 28px;max-width:74ch}
+
+  h3{font-size:24px;margin:38px 0 4px;font-weight:700;color:var(--soil-deep)}
+  h3 .tag{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);display:block;margin-bottom:2px;font-weight:700}
+  h4{font-size:18.5px;margin:26px 0 2px;font-weight:700;color:var(--ink)}
+  p{margin:.8em 0}
+  .lead-in{font-variant:small-caps;letter-spacing:.03em;color:var(--clay);font-weight:700}
+
+  /* callouts */
+  .box{border-radius:6px;padding:20px 24px;margin:26px 0;font-size:16.5px;box-shadow:0 2px 10px var(--shadow)}
+  .box .h{font-family:"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .box p:first-of-type{margin-top:0}
+  .box p:last-child{margin-bottom:0}
+  .quote{background:#eef1e9;border-left:5px solid var(--leaf);color:#2c3a2a}
+  .quote .h{color:var(--leaf)}
+  .correct{background:#fbf1ec;border-left:5px solid var(--rust)}
+  .correct .h{color:var(--rust)}
+  .puli{background:#eef0f0;border-left:5px solid var(--sky)}
+  .puli .h{color:var(--sky)}
+  .example{background:#f7f0dd;border-left:5px solid var(--gold)}
+  .example .h{color:#9a6f16}
+  .keypoint{background:var(--ink);color:var(--paper);border-left:5px solid var(--gold)}
+  .keypoint .h{color:var(--gold)}
+  .keypoint strong{color:#fff}
+
+  ul.clean,ol.clean{margin:14px 0;padding-left:22px}
+  ul.clean li,ol.clean li{margin:8px 0}
+
+  table.data{width:100%;border-collapse:collapse;margin:24px 0;font-size:16px;background:#fff;box-shadow:0 2px 10px var(--shadow);border-radius:6px;overflow:hidden}
+  table.data th{background:var(--ink);color:var(--paper);font-family:"Helvetica Neue",Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;padding:12px 14px;text-align:left}
+  table.data td{padding:11px 14px;border-top:1px solid var(--line);vertical-align:top}
+  table.data tr:nth-child(even) td{background:var(--paper-2)}
+  table.data td.num{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;color:var(--clay);white-space:nowrap}
+
+  figure{margin:32px 0;text-align:center}
+  figure svg{max-width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 4px 18px var(--shadow)}
+  figcaption{font-family:"Helvetica Neue",Arial,sans-serif;font-size:13px;color:var(--ink-soft);margin-top:12px;font-style:normal;letter-spacing:.01em}
+  figcaption b{color:var(--clay)}
+
+  .divider{height:2px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:44px 0}
+
+  footer{background:var(--ink);color:#b9c6b6;padding:50px 0;margin-top:60px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px;line-height:1.8}
+  footer .wrap b{color:var(--gold)}
+
+  a.top{display:inline-block;margin-top:10px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--clay);text-decoration:none}
+
+  @media(prefers-reduced-motion:no-preference){
+    section.fund{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+    section.fund.vis{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<a id="top"></a>
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Balanced Plant Nutrient Management &middot; In-Depth Field Reference</p>
+    <h1 class="title">The Ten Fundamentals
+      <small>A full plain-English reconstruction of B.&nbsp;T.&nbsp;Gore's Nutrition Mastery course — every concept unpacked, errors corrected, and read against the Pulivendula Bhagwa block.</small>
+    </h1>
+    <p class="credit">
+      Source course: <b>Nutrition Mastery</b> by Dalimbratna Shri <b>B.&nbsp;T.&nbsp;Gore</b>, Farm DSS Agritech.<br>
+      This document: a teaching reconstruction — not a transcript. Concepts explained from first principles, with worked examples and diagrams built for this reference.
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="readnote">
+    <p><strong>How to read this document.</strong> Each fundamental is rebuilt as a lesson, not a summary. First the idea in plain English, then <em>why</em> it is true, then a worked example, then what it means for a calcareous, semi-arid, borewell-irrigated block like Pulivendula. Where the original teaching contains an error or an overstatement, the corrected science is given directly in the text — you are reading the reliable version, not the raw claim.</p>
+    <p><strong>Four kinds of highlighted box appear throughout:</strong> a <em>green</em> box is the core principle worth memorising; a <em>red</em> box is a correction where the course was wrong or loose; a <em>gold</em> box is a worked example; a <em>blue</em> box applies the idea to your own farm.</p>
+  </div>
+
+  <nav class="toc">
+    <h2>The Ten Fundamentals</h2>
+    <ol>
+      <li><a href="#f1">Why grow your own nutrition</a></li>
+      <li><a href="#f2">Building a living plot</a></li>
+      <li><a href="#f3">What soil fertility actually means</a></li>
+      <li><a href="#f4">How a crop makes its own food</a></li>
+      <li><a href="#f5">Soil is alive, not a container</a></li>
+      <li><a href="#f6">The physical soil — water &amp; air</a></li>
+      <li><a href="#f7">The biological soil — the food web</a></li>
+      <li><a href="#f8">The chemical soil — pH, EC, CEC</a></li>
+      <li><a href="#f9">Liebig&rsquo;s Law &amp; balance</a></li>
+      <li><a href="#f10">Soil testing done right</a></li>
+    </ol>
+  </nav>
+
+</div>
+
+<!-- ============ PLACEHOLDER: fundamentals inserted below ============ -->
+<!-- ===================== FUNDAMENTAL 1 ===================== -->
+<section class="fund" id="f1">
+<div class="wrap">
+  <div class="fnum">1</div>
+  <h2>Why you grow your own nutrition
+    <span class="marathi">स्वतःचे अन्न स्वतः तयार करा</span>
+  </h2>
+  <p class="standfirst">Before any chemistry, the course plants a single idea: the health of the person who eats the food is decided in the soil the food grew in. This is the frame everything else hangs from.</p>
+
+  <p>The opening lesson is not agronomy — it is a way of seeing. Gore&rsquo;s claim, stripped of the rhetoric, is a chain of four links: <span class="lead-in">fertile soil &rarr; a crop that is not sick &rarr; nutrient-dense food &rarr; a person who does not fall sick.</span> Each link is doing real work, and it is worth taking them one at a time because the whole course is really an argument that this chain is unbroken and that most modern farming snaps it at the first link.</p>
+
+  <p>The first link — fertile soil produces a crop that is not sick — is the one the later technical sessions defend in detail. The idea is that a plant which can reach every nutrient it needs completes its internal chemistry, and a plant that completes its chemistry has intact cell walls, functioning defences, and no metabolic gaps for a pathogen to exploit. The second link — a healthy crop yields nutrient-dense food — is straightforwardly true and measurable: the mineral and protein content of produce tracks the growing conditions. The third link — that food determines the eater&rsquo;s health — is the one to hold at arm&rsquo;s length. Diet genuinely shapes long-term health, but the course sometimes states this as if soil quality alone prevents named diseases like cancer and diabetes. That is motivational framing, not epidemiology, and you should file it that way while still taking the underlying point seriously.</p>
+
+  <div class="box quote">
+    <div class="h">&#9670; The core claim, as taught</div>
+    <p>&ldquo;Fertile land means land from which the crop gets its nutrients. A crop that gets its nutrients does not fall sick. And from a crop that does not fall sick, the person who eats it also does not fall sick.&rdquo;</p>
+  </div>
+
+  <p>Why open a <em>nutrient management</em> course with a lesson about family health and self-grown food? Because Gore is doing something deliberate: he separates the goal (a self-sustaining, low-cost, biologically alive farm) from the tool (fertiliser). Most farmers, he argues, have fused the two — they think &ldquo;feeding the crop&rdquo; and &ldquo;buying bags&rdquo; are the same act. The entire year of teaching is an attempt to prise those apart. The self-food plot in Fundamental 2 is the training ground where you learn to feed a crop without reaching for a bag, so that when you return to your commercial block you can tell the difference between what the plant needs and what the market sells.</p>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — the &ldquo;empty calorie&rdquo; parallel</div>
+    <p>Two tomatoes look identical. One grew in a soil with a live microbial population and full micronutrient availability; the other grew in a compacted, salt-loaded soil kept alive only by a drip line of soluble NPK. Both weigh 120&nbsp;g. But the first carries more zinc, iron, boron and functional protein, because those were available at the root and the plant&rsquo;s chemistry ran to completion. The second is mostly water and sugar bulked out by nitrate-driven cell expansion. On the market table they fetch the same price. In the body they are not the same food. Gore&rsquo;s whole opening is an argument that the invisible difference is created in the soil, months before harvest — and that you cannot spray it back in afterwards.</p>
+  </div>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula</div>
+    <p>You are not building a kitchen garden — you are building a 4-acre commercial Bhagwa block. So take Fundamental 1 as a <em>discipline</em>, not a lifestyle. The usable transfer is this: decide the yield and quality target for the block first, then work backward to what the soil and water must supply, and treat every input salesman as someone selling a tool for a job you have not yet defined. On a calcareous, semi-arid site the temptation will be to spray your way out of every symptom. This lesson is the pre-commitment against that.</p>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== FUNDAMENTAL 2 ===================== -->
+<section class="fund" id="f2">
+<div class="wrap">
+  <div class="fnum">2</div>
+  <h2>Building a living plot
+    <span class="marathi">स्वतःचे शेत कसे तयार करावे</span>
+  </h2>
+  <p class="standfirst">The practical heart of the early course: a step-by-step method for turning bare ground into a self-feeding ecosystem. Every step encodes a principle you will meet again in the technical sessions.</p>
+
+  <p>This is the most hands-on lesson in the whole course, and it repays close reading because it is really the technical curriculum disguised as a gardening recipe. Gore lays out a small plot — one <em>guntha</em> (33&nbsp;ft &times; 33&nbsp;ft) per family member, minimum five guntha — enclosed in shade net, with fruit trees on the border and twelve beds inside, one planted each month. But the sequence of operations is the point, not the plot size. Each step is a physical enactment of a principle: build carbon, feed biology, never expose bare soil, and let the plant &mdash; not the bag &mdash; do the fertilising.</p>
+
+  <h3><span class="tag">The method, in order</span>The eight moves that build the soil</h3>
+
+  <figure>
+    <svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flowchart of the eight field-preparation steps">
+      <defs>
+        <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#6b4f33"/></marker>
+        <linearGradient id="soilg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a6a44"/><stop offset="1" stop-color="#5a3f27"/></linearGradient>
+      </defs>
+      <style>
+        .stp{fill:#fff;stroke:#6b4f33;stroke-width:1.5;rx:8}
+        .stpt{font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;fill:#1a2621}
+        .stpn{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;fill:#c8912b}
+        .cap{font-family:'Helvetica Neue',Arial,sans-serif;font-size:10.5px;fill:#3d4a43}
+      </style>
+      <!-- row 1 -->
+      <g>
+        <rect class="stp" x="14" y="24" width="180" height="72" rx="8"/>
+        <text class="stpn" x="26" y="46">STEP 1</text>
+        <text class="stpt" x="26" y="64">Base dressing</text>
+        <text class="cap" x="26" y="82">FYM + fishmeal + neem</text>
+        <text class="cap" x="26" y="94">cake + vermicompost</text>
+      </g>
+      <line x1="194" y1="60" x2="222" y2="60" stroke="#6b4f33" stroke-width="1.5" marker-end="url(#arrow2)"/>
+      <g>
+        <rect class="stp" x="228" y="24" width="180" height="72" rx="8"/>
+        <text class="stpn" x="240" y="46">STEP 2</text>
+        <text class="stpt" x="240" y="64">Flood-wet (not drip)</text>
+        <text class="cap" x="240" y="82">soak the whole area</text>
+        <text class="cap" x="240" y="94">before any planting</text>
+      </g>
+      <line x1="408" y1="60" x2="436" y2="60" stroke="#6b4f33" stroke-width="1.5" marker-end="url(#arrow2)"/>
+      <g>
+        <rect class="stp" x="442" y="24" width="180" height="72" rx="8"/>
+        <text class="stpn" x="454" y="46">STEP 3</text>
+        <text class="stpt" x="454" y="64">Sow green manure</text>
+        <text class="cap" x="454" y="82">sunn hemp (taag)</text>
+        <text class="cap" x="454" y="94">or dhaincha</text>
+      </g>
+      <line x1="622" y1="60" x2="650" y2="60" stroke="#6b4f33" stroke-width="1.5" marker-end="url(#arrow2)"/>
+      <g>
+        <rect class="stp" x="656" y="24" width="188" height="72" rx="8"/>
+        <text class="stpn" x="668" y="46">STEP 4</text>
+        <text class="stpt" x="668" y="64">Incorporate at</text>
+        <text class="stpt" x="668" y="80">pod initiation</text>
+        <text class="cap" x="668" y="94">rotavate + deep plough</text>
+      </g>
+      <!-- down connector -->
+      <line x1="750" y1="96" x2="750" y2="130" stroke="#6b4f33" stroke-width="1.5" marker-end="url(#arrow2)"/>
+      <!-- row 2 (right to left) -->
+      <g>
+        <rect class="stp" x="656" y="134" width="188" height="72" rx="8"/>
+        <text class="stpn" x="668" y="156">STEP 5</text>
+        <text class="stpt" x="668" y="174">Form 12 beds</text>
+        <text class="cap" x="668" y="192">submain + 1 lateral/bed</text>
+      </g>
+      <line x1="656" y1="170" x2="628" y2="170" stroke="#6b4f33" stroke-width="1.5" marker-end="url(#arrow2)"/>
+      <g>
+        <rect class="stp" x="442" y="134" width="180" height="72" rx="8"/>
+        <text class="stpn" x="454" y="156">STEP 6</text>
+        <text class="stpt" x="454" y="174">Plant + trap</text>
+        <text class="cap" x="454" y="192">yellow &amp; blue sticky traps</text>
+      </g>
+      <line x1="442" y1="170" x2="414" y2="170" stroke="#6b4f33" stroke-width="1.5" marker-end="url(#arrow2)"/>
+      <g>
+        <rect class="stp" x="228" y="134" width="180" height="72" rx="8"/>
+        <text class="stpn" x="240" y="156">STEP 7</text>
+        <text class="stpt" x="240" y="174">Cut, never uproot</text>
+        <text class="cap" x="240" y="192">lay cover crop as mulch</text>
+      </g>
+      <line x1="228" y1="170" x2="200" y2="170" stroke="#6b4f33" stroke-width="1.5" marker-end="url(#arrow2)"/>
+      <g>
+        <rect class="stp" x="14" y="134" width="180" height="72" rx="8"/>
+        <text class="stpn" x="26" y="156">STEP 8</text>
+        <text class="stpt" x="26" y="174">Keep soil covered</text>
+        <text class="cap" x="26" y="192">+ 15-day spray cycle</text>
+      </g>
+      <!-- soil strip -->
+      <rect x="14" y="250" width="830" height="150" rx="10" fill="url(#soilg)"/>
+      <text x="30" y="278" font-family="Helvetica Neue,Arial" font-size="13" font-weight="700" fill="#fff">WHAT EACH STEP IS REALLY DOING</text>
+      <text x="30" y="304" class="cap" fill="#f6f3ea">Steps 1&ndash;4 build organic carbon &mdash; the food the microbes live on.</text>
+      <text x="30" y="326" class="cap" fill="#f6f3ea">Steps 3&ndash;4 (green manure) pull salts out of the soil and lock them into decomposable biomass.</text>
+      <text x="30" y="348" class="cap" fill="#f6f3ea">Steps 7&ndash;8 (cut-not-uproot, permanent mulch) protect the carbon and biology you just built.</text>
+      <text x="30" y="370" class="cap" fill="#f6f3ea">The 15-day sprays (cow urine / neem-karanj) replace calendar pesticides with a light biological program.</text>
+      <text x="30" y="392" class="cap" fill="#f6f3ea">Net effect: the plant fertilises itself through root exudates &mdash; you feed the soil, not the crop.</text>
+    </svg>
+    <figcaption>The eight-step plot method as a single loop. <b>Read the brown strip</b> — it translates each operation into the principle it serves.</figcaption>
+  </figure>
+
+  <h3><span class="tag">The base dressing</span>What goes in, and why each thing is there</h3>
+  <p>The starting dose, given per five guntha, is worth understanding ingredient by ingredient because it is a balanced carbon-and-biology charge, not a fertiliser:</p>
+
+  <table class="data">
+    <thead><tr><th>Input</th><th>Rate / 5 guntha</th><th>What it actually contributes</th></tr></thead>
+    <tbody>
+      <tr><td>Farmyard manure (shenkhat)</td><td class="num">1 trailer</td><td>Bulk organic carbon and a starter microbial population — the substrate everything else feeds on</td></tr>
+      <tr><td>Fish meal <em>or</em> bone meal</td><td class="num">50 kg</td><td>Slow-release phosphorus and calcium, plus protein nitrogen that mineralises gradually</td></tr>
+      <tr><td>Neem cake <em>or</em> Orgo Strong</td><td class="num">50 kg</td><td>Carbon plus a mild nitrification-slowing and nematode-suppressing effect from neem compounds</td></tr>
+      <tr><td>Vermicompost</td><td class="num">50 kg</td><td>A concentrated inoculant of beneficial microbes and humic substances</td></tr>
+    </tbody>
+  </table>
+
+  <p>Then the green-manure step, which is the cleverest move in the sequence. You sow sunn hemp or dhaincha, let it grow, and chop it into the soil <em>at pod initiation</em> — the moment before it invests its nutrients into seed. The stated reasons are two: these crops are heavy water drinkers, so they pull dissolved salts up out of the soil and lock them into their tissue; and when you incorporate that tissue, the salts return as decomposable organic matter rather than free ions. This is genuinely sound — green manuring is one of the few practices that measurably lifts organic carbon and improves structure within a single season.</p>
+
+  <div class="box quote">
+    <div class="h">&#9670; The principle to keep</div>
+    <p><strong>Cut, never uproot; and never leave soil bare.</strong> Uprooting destroys the root channels and the fungal network you built. Bare soil heats, loses moisture, pushes salts to the surface, drives earthworms down, and stops the microbes working — the ground goes hard. A permanent living or dead cover is not decoration; it is the single cheapest thing that keeps the biology alive.</p>
+  </div>
+
+  <div class="box correct">
+    <div class="h">&#9650; Correction — the &ldquo;no fungicide, ever&rdquo; rule</div>
+    <p>Gore tells the kitchen-garden grower to use <em>no fungicide even when disease appears</em>, on the logic that a strong plant will not get sick. On a 5-guntha plot the cost of being wrong is one bed, so the absolutism is affordable there. <strong>Do not carry this rule to a commercial block.</strong> Bacterial blight and Fusarium wilt infect vigorous, well-fed pomegranate. The transferable part of this lesson is the <em>program</em> (traps, cover, light biologicals, sanitation) as the first line — not the refusal of curative chemistry when a real pathogen is established.</p>
+  </div>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — why &ldquo;pod initiation&rdquo; is exact, not vague</div>
+    <p>Imagine two farmers both grow dhaincha as green manure. Farmer A ploughs it in when it is young and green but before flowering; Farmer B waits until it has set and filled pods. Farmer A returns tender, nitrogen-rich, low-lignin tissue that decomposes in weeks and releases a flush of nutrients and carbon. Farmer B returns woody, seed-bearing tissue: it decomposes slowly, temporarily locks up nitrogen as microbes work on the lignin, and scatters viable dhaincha seed that becomes next season&rsquo;s weed. Gore&rsquo;s &ldquo;at pod initiation&rdquo; is the knife-edge between these — late enough for maximum biomass, early enough to still be soft and seedless. The precision is the whole value.</p>
+  </div>
+
+  <h3><span class="tag">The full operating spec</span>Everything the 30-page session actually prescribes</h3>
+  <p>The lesson runs long because Gore repeats and motivates heavily, but stripped to its operational core it is a complete, self-contained growing system. Here is the whole thing in four tables — layout, the fertility program, the spray program, and the timing rules that make the sprays safe. Nothing operational from the session is left out.</p>
+
+  <h4>1 &middot; Plot design and layout</h4>
+  <table class="data">
+    <thead><tr><th>Element</th><th>Specification</th></tr></thead>
+    <tbody>
+      <tr><td>Sizing rule</td><td class="num">1 guntha (33&times;33 ft) per family member; minimum 5 guntha even for two people</td></tr>
+      <tr><td>Enclosure</td><td>Shade net on all sides &mdash; exclude dogs and other animals (a food chain is being built inside)</td></tr>
+      <tr><td>Border planting</td><td>Regional fruit trees, 1&ndash;2 of each: guava, mosambi, orange, coconut, chiku, mango, custard apple, pomegranate</td></tr>
+      <tr><td>Interior</td><td class="num">12 beds &mdash; one planted per month</td></tr>
+      <tr><td>Irrigation</td><td>Submain pipe + one inline lateral per bed</td></tr>
+      <tr><td>Companion trees on border</td><td>Drumstick (shevga), hadga/agasti, kuyri, avdi bean &mdash; leaves &amp; flowers eaten as vegetables</td></tr>
+    </tbody>
+  </table>
+
+  <h4>2 &middot; The bed rotation &mdash; and the &ldquo;no-water&rdquo; beds</h4>
+  <p>The bed logic is the subtle part. Bed 1 is planted with vegetables immediately. Beds 2 and 3 get <strong>no water</strong> &mdash; they carry green manure that is cut and laid as mulch. Watering starts from bed 4 onward, and one new bed is brought into production each month, so the plot is always producing and always partly resting under cover.</p>
+  <table class="data">
+    <thead><tr><th>Bed</th><th>Treatment</th></tr></thead>
+    <tbody>
+      <tr><td class="num">Bed 1</td><td>Plant seasonal vegetables immediately (April start)</td></tr>
+      <tr><td class="num">Beds 2&ndash;3</td><td><strong>No water.</strong> Taag/dhaincha grown, then <em>cut</em> (never uprooted) and laid as mulch</td></tr>
+      <tr><td class="num">Bed 4 onward</td><td>Irrigated; one new bed planted each month in succession</td></tr>
+      <tr><td class="num">All idle beds</td><td>Kept under cut-and-laid green manure &mdash; soil never bare</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Crops:</strong> cucumber, tomato, brinjal, okra, cabbage, cauliflower, spinach; wild greens treated as medicine (bathua, amaranth, pathri); mustard in winter. <strong>Seed:</strong> desi/gavran only, GM explicitly rejected, seed exchanged within the group.</p>
+
+  <h4>3 &middot; The fertility program</h4>
+  <table class="data">
+    <thead><tr><th>Input</th><th>Rate</th><th>Frequency</th></tr></thead>
+    <tbody>
+      <tr><td>Base dressing (per 5 guntha)</td><td class="num">1 trailer FYM + 50 kg fish/bone meal + 50 kg neem cake or Orgo Strong + 50 kg vermicompost</td><td>Once, at establishment (see table above)</td></tr>
+      <tr><td>Slurry (composition given in a later session)</td><td class="num">&mdash;</td><td>Every 15 days, applied on the beds</td></tr>
+      <tr><td><strong>Avena Nutrimix</strong> (fulvic acid + seaweed extract)</td><td class="num">100 ml / week</td><td>Weekly &mdash; the micronutrient carrier</td></tr>
+    </tbody>
+  </table>
+  <p>The Avena Nutrimix piece is Gore&rsquo;s micronutrient answer: rather than soil-applying zinc or iron salts, he delivers fulvic acid and seaweed extract weekly, on the argument that these chelate and carry trace elements into the plant. He backs it with his own cattle anecdote &mdash; that once he fed Nutrimix-grown fodder, his cows&rsquo; separate mineral supplement became unnecessary and &ldquo;the clinic shut down.&rdquo;</p>
+
+  <h4>4 &middot; The spray program &mdash; 52 sprays a year, fixed on Sunday</h4>
+  <p>Only two sprays, alternating every Sunday across the whole year. This is the entire plant-protection system for the plot &mdash; no calendar pesticides.</p>
+  <table class="data">
+    <thead><tr><th>Week</th><th>Spray</th><th>Rate</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1 (Sun)</td><td>Desi cow urine (gomutra)</td><td>10 ml/litre &mdash; i.e. 150 ml in a 15 L knapsack</td></tr>
+      <tr><td class="num">2 (Sun)</td><td>Combo 300 (Vijaya Agro) &mdash; neem + karanj</td><td>2.5 ml neem + 2.5 ml karanj per litre</td></tr>
+      <tr><td class="num">3 (Sun)</td><td>Gomutra again</td><td>as week 1</td></tr>
+      <tr><td class="num">4 (Sun)</td><td>Combo 300 again</td><td>as week 2</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box keypoint">
+    <div class="h">&#9670; The timing rules that keep the sprays from burning the crop</div>
+    <p>These four rules are the operationally critical part &mdash; get them wrong and the gomutra scorches tender tissue:</p>
+    <p>&bull; <strong>If Sunday is your spray day, transplant on Monday</strong> &mdash; so the first spray never lands on a just-moved seedling.<br>
+    &bull; <strong>No spray for 8 days after transplanting</strong> &mdash; the seedling needs that long to establish.<br>
+    &bull; <strong>No spray for 15 days on directly-sown seed</strong> &mdash; leave that portion out of the pass entirely.<br>
+    &bull; <strong>Reason:</strong> gomutra burns tender foliage, so young and freshly-disturbed tissue must be spared until it hardens.</p>
+  </div>
+
+  <p>Two absolute prohibitions close the system: <strong>no fungicide, even when disease appears</strong>, and <strong>no insecticide or fungicide into the soil, ever</strong>. Pest pressure is handled by yellow + blue sticky traps (4&ndash;10 units plus a border run), not by curative chemistry. The no-fungicide rule is the one flagged in the correction box above &mdash; safe at 5-guntha scale, unsafe on a commercial block.</p>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula</div>
+    <p>Three moves from this lesson port directly to a pre-planting Bhagwa block, and they are exactly what you should do in the seasons <em>before</em> the Nov&ndash;Dec 2027 planting:</p>
+    <ul class="clean">
+      <li><strong>Grow and incorporate green manure</strong> (sunn hemp or dhaincha) across the block the season before planting. On calcareous, low-carbon soil this is the cheapest way to lift organic carbon and start the biology.</li>
+      <li><strong>Commit to permanent inter-row cover / mulch</strong> from day one. Bare soil in a semi-arid site is where your salt problem gets worse fastest.</li>
+      <li><strong>Cut, don&rsquo;t uproot</strong> cover crops between the rows once the orchard is in.</li>
+      <li><strong>Sticky traps (yellow + blue) as monitoring and first-line control</strong> transfer well to an orchard &mdash; they cost little and cut early pest pressure.</li>
+    </ul>
+    <p>From the full spec above, <em>skip</em>: the guntha-per-person sizing, the 12-bed layout, the 52-spray gomutra/neem rotation as a <em>sole</em> plant-protection system, and the no-fungicide rule &mdash; those are kitchen-garden scale. A Bhagwa block still needs a real disease-management plan for bacterial blight and Fusarium wilt (see Fundamentals 7, 9 and 10). The green manure, permanent mulch, cut-not-uproot, and trap elements are the parts that carry over.</p>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== FUNDAMENTAL 3 ===================== -->
+<section class="fund" id="f3">
+<div class="wrap">
+  <div class="fnum">3</div>
+  <h2>What soil fertility actually means
+    <span class="marathi">जमिनीची सुपीकता</span>
+  </h2>
+  <p class="standfirst">The pivot of the entire course. Fertility is redefined from &ldquo;how much nutrient is present&rdquo; to &ldquo;how much nutrient the soil can actually deliver to the plant.&rdquo; This one shift explains every apparent contradiction later.</p>
+
+  <p>Here Gore makes the single most important conceptual move in the course, and if you internalise nothing else, internalise this. He defines fertility not as a <em>stock</em> — the quantity of nutrient sitting in the soil — but as a <em>capacity to supply</em>. The exact phrasing is worth stating precisely:</p>
+
+  <div class="box quote">
+    <div class="h">&#9670; The definition that reframes everything</div>
+    <p><strong>Soil fertility is the capacity of the soil to supply nutrient elements to the crop, in the form and at the moment the crop needs them, so as to achieve the expected yield — in both quality and quantity — disease-free, pest-free, at the lowest cost and with the fewest sprays.</strong></p>
+  </div>
+
+  <p>Notice how much is packed into that. &ldquo;Expected yield&rdquo; is defined relative to conditions — ten tonnes of kharif onion is a triumph, ten tonnes of summer onion is a failure, because the summer crop should reach fifteen. &ldquo;Yield&rdquo; is defined as quality <em>and</em> quantity together — sugar recovery matters as much as tonnage. And crucially, fertility is a property of <em>delivery</em>, not <em>presence</em>. A soil can be stuffed with potassium and still be infertile <em>for potassium</em> if the pH, the biology, or the water chemistry prevents the plant from taking it up.</p>
+
+  <p>This is the master key. It is why Gore can say, apparently contradicting himself, both &ldquo;your soil nutrients can never run out&rdquo; <em>and</em> &ldquo;you need to add micronutrients.&rdquo; The stock is enormous — the parent rock holds centuries of nutrients. But the <em>available fraction</em> is small and easily blocked. Fertility is entirely about that available fraction. Once you hold this distinction, the pH lesson, the CEC lesson, the biology lesson and the Liebig lesson all become one argument: they are each describing a different thing that can throttle delivery even when the stock is full.</p>
+
+  <figure>
+    <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram contrasting nutrient stock with nutrient availability">
+      <style>
+        .lbl{font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;fill:#1a2621}
+        .lblw{font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;fill:#fff;font-weight:700}
+        .sm{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;fill:#3d4a43}
+        .ttl{font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:800;fill:#1a2621}
+      </style>
+      <text x="30" y="34" class="ttl">TOTAL STOCK vs. WHAT THE PLANT CAN ACTUALLY GET</text>
+      <!-- big stock box -->
+      <rect x="30" y="56" width="330" height="270" rx="10" fill="#6b4f33"/>
+      <text x="46" y="82" class="lblw">TOTAL NUTRIENT STOCK</text>
+      <text x="46" y="102" class="sm" fill="#e8dcc8">held in soil + parent rock — centuries&rsquo; worth</text>
+      <!-- available sliver inside -->
+      <rect x="46" y="120" width="40" height="190" rx="4" fill="#5c9350"/>
+      <text x="96" y="150" class="lblw" fill="#eaf3e6" style="font-size:12px">the green sliver =</text>
+      <text x="96" y="168" class="lblw" fill="#eaf3e6" style="font-size:12px">AVAILABLE fraction</text>
+      <text x="96" y="192" class="sm" fill="#e8dcc8">This is all the plant</text>
+      <text x="96" y="208" class="sm" fill="#e8dcc8">can reach right now.</text>
+      <text x="96" y="232" class="sm" fill="#e8dcc8">Fertility = the SIZE</text>
+      <text x="96" y="248" class="sm" fill="#e8dcc8">of this sliver, not the</text>
+      <text x="96" y="264" class="sm" fill="#e8dcc8">size of the brown box.</text>
+      <!-- throttles -->
+      <text x="410" y="80" class="ttl">FOUR THINGS THAT THROTTLE THE SLIVER</text>
+      <g>
+        <rect x="410" y="98" width="380" height="46" rx="8" fill="#fff" stroke="#a8432a" stroke-width="1.5"/>
+        <text x="426" y="118" class="lbl" style="font-weight:700;fill:#a8432a">Wrong pH</text>
+        <text x="426" y="135" class="sm">locks up P, Fe, Zn on calcareous ground — Fund. 8</text>
+      </g>
+      <g>
+        <rect x="410" y="152" width="380" height="46" rx="8" fill="#fff" stroke="#3a6d78" stroke-width="1.5"/>
+        <text x="426" y="172" class="lbl" style="font-weight:700;fill:#3a6d78">High EC / salts</text>
+        <text x="426" y="189" class="sm">water can&rsquo;t enter roots against osmotic pull — Fund. 4, 8</text>
+      </g>
+      <g>
+        <rect x="410" y="206" width="380" height="46" rx="8" fill="#fff" stroke="#6b4f33" stroke-width="1.5"/>
+        <text x="426" y="226" class="lbl" style="font-weight:700;fill:#6b4f33">Dead biology</text>
+        <text x="426" y="243" class="sm">no microbes to convert stock into ionic form — Fund. 7</text>
+      </g>
+      <g>
+        <rect x="410" y="260" width="380" height="46" rx="8" fill="#fff" stroke="#3f6b3a" stroke-width="1.5"/>
+        <text x="426" y="280" class="lbl" style="font-weight:700;fill:#3f6b3a">Antagonism</text>
+        <text x="426" y="297" class="sm">excess of one nutrient blocks another — Fund. 9</text>
+      </g>
+    </svg>
+    <figcaption>Fertility is the <b>green sliver</b>, not the brown box. The whole course is a catalogue of the four throttles on the right — everything downstream is about widening the sliver.</figcaption>
+  </figure>
+
+  <h3><span class="tag">The parameters</span>What a fertility assessment actually measures</h3>
+  <p>Gore lists the levers that decide the size of that available sliver, and they map onto the soil-test report you will pull later: organic carbon, pH, EC, the individual nutrient levels, free lime (calcium carbonate), water quality, water-holding capacity, the presence of air pockets, whether a hardpan has formed, and whether the soil is saline or sodic. His instruction is to not drown in the online detail of each — the later sessions take them one at a time, in the month each one actually bites.</p>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — the bank account you cannot withdraw from</div>
+    <p>Think of soil nutrients as money. The <em>stock</em> is a fixed deposit of ten lakh rupees — large, real, yours. But it is locked, and you can only withdraw through one small ATM whose daily limit is set by pH, biology and water chemistry. If the ATM limit is &#8377;500 a day and your crop needs &#8377;2,000 that week, you are &ldquo;poor&rdquo; despite the ten lakh in the account. Adding more money to the fixed deposit (dumping fertiliser) does nothing — the ATM limit did not change. Fertility work is not about depositing more; it is about raising the daily withdrawal limit. That is why organic carbon, pH management and biology matter more than the size of the fertiliser bag.</p>
+  </div>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula</div>
+    <p>On calcareous soil at pH 8&ndash;8.5, your fixed deposit is full but the ATM limit is throttled hardest for <strong>iron, zinc and phosphorus</strong> (locked by high pH) and your withdrawals are further taxed by <strong>salt in the borewell water</strong>. This reframing tells you where to spend: not on more P and Zn <em>into</em> the soil where it will precipitate, but on the delivery mechanisms — organic carbon to build biology and chelation, chelated micronutrients that survive high pH, and irrigation-water management to keep EC from taxing every withdrawal. Fundamental 3 is the reason your money goes there and not into bags of DAP.</p>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== FUNDAMENTAL 4 ===================== -->
+<section class="fund" id="f4">
+<div class="wrap">
+  <div class="fnum">4</div>
+  <h2>How a crop makes its own food
+    <span class="marathi">वनस्पती अन्न कसे तयार करते</span>
+  </h2>
+  <p class="standfirst">The technical core. Two ideas do almost all the work: the plant eats ions, not fertiliser; and nutrients arrive only when water moves — which means the same soil can show deficiency or toxicity depending purely on the weather.</p>
+
+  <p>This is the session where the course becomes real agronomy, and it contains two ideas that, once understood, change how you read every leaf symptom for the rest of your life.</p>
+
+  <h3><span class="tag">Idea one</span>The plant eats ions, not fertiliser</h3>
+  <p>Start with photosynthesis, because Gore builds everything on it. In the leaf, sunlight + carbon dioxide + water combine to make carbohydrate — the plant&rsquo;s energy currency. That energy then builds proteins, lipids, hormones and enzymes. But proteins need nitrogen, enzymes need metal cofactors, and none of those minerals are made in the leaf — they arrive from the soil, dissolved in water, pulled up through the roots. The bigger, flatter and greener the leaf, the more sunlight it catches, the more energy it makes, the more it can build — and, critically, the more carbon it pushes back down through the roots as exudate to feed the microbes. That last part is the feedback loop that ties this session to the biology session.</p>
+
+  <p>Now the key correction to how most farmers think. <strong>The plant cannot absorb DAP, or urea granules, or farmyard manure.</strong> It can only absorb nutrients in <em>ionic form</em> — nitrogen as nitrate or ammonium ion, phosphorus as phosphate ion, and so on. Everything you apply must first be broken down, dissolved, and converted to an ion before a single root can take it up. Gore&rsquo;s image for this is grinding bajra into flour: the whole grain will not dissolve, but ground fine enough it disperses in water and can pass through pores invisible to the eye. The grinders that do this work are the soil microbes and their organic acids. No biology, no grinding; no grinding, no ionic form; no ionic form, no uptake — no matter how full the soil is.</p>
+
+  <div class="box quote">
+    <div class="h">&#9670; The principle to keep</div>
+    <p><strong>Roots drink ions dissolved in water. Fertiliser is only the raw ore — soil biology is the mill that grinds it into a form the plant can drink. This is why dead soil does not respond to fertiliser, and why biology is upstream of chemistry.</strong></p>
+  </div>
+
+  <h3><span class="tag">Idea two</span>Nutrients move only when water moves — the transpiration engine</h3>
+  <p>This is the most valuable single idea in the entire course, and it is genuinely good agronomy. Nutrients travel from soil to leaf dissolved in the transpiration stream — the flow of water the plant pulls up and evaporates out through its leaves. The rate of that flow is set by the weather: hot, dry, windy air pulls water out fast; cool, humid, still, overcast air barely pulls at all. And here is the consequence that trips up every farmer: <em>the same soil, with the same nutrients, produces opposite leaf symptoms depending only on the weather.</em></p>
+
+  <figure>
+    <svg viewBox="0 0 840 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of how weather drives transpiration and produces either toxicity or deficiency">
+      <style>
+        .t{font-family:'Helvetica Neue',Arial,sans-serif;fill:#1a2621}
+        .th{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:14px}
+        .tb{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;fill:#1a2621}
+        .ts{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;fill:#3d4a43}
+      </style>
+      <!-- centre soil -->
+      <rect x="330" y="185" width="180" height="60" rx="8" fill="#6b4f33"/>
+      <text x="420" y="212" text-anchor="middle" class="t" fill="#fff" font-weight="700" font-size="13">SAME SOIL</text>
+      <text x="420" y="230" text-anchor="middle" class="ts" fill="#e8dcc8">nutrients present &amp; adequate</text>
+
+      <!-- LEFT: summer / toxicity -->
+      <rect x="20" y="40" width="300" height="150" rx="10" fill="#fbeee9" stroke="#a8432a" stroke-width="1.5"/>
+      <text x="36" y="66" class="th" fill="#a8432a">HOT / DRY / WINDY</text>
+      <text x="36" y="88" class="tb">45&deg;C &middot; 10% humidity &middot; 25 km/h wind</text>
+      <text x="36" y="110" class="ts">Transpiration is FURIOUS. Water races out</text>
+      <text x="36" y="126" class="ts">of the leaf, dragging salts to the tip &amp; margin</text>
+      <text x="36" y="142" class="ts">faster than photosynthesis can use them.</text>
+      <text x="36" y="166" class="tb" fill="#a8432a" font-weight="700">&rarr; Salts pile up = TOXICITY</text>
+      <text x="36" y="182" class="ts">leaf-tip scorch, marginal necrosis</text>
+      <path d="M320,150 Q345,175 335,188" fill="none" stroke="#a8432a" stroke-width="2" marker-end="url(#arrow2)"/>
+
+      <!-- RIGHT: monsoon / deficiency -->
+      <rect x="520" y="40" width="300" height="150" rx="10" fill="#eef1e9" stroke="#3f6b3a" stroke-width="1.5"/>
+      <text x="536" y="66" class="th" fill="#3f6b3a">COOL / HUMID / STILL</text>
+      <text x="536" y="88" class="tb">20&deg;C &middot; overcast &middot; no wind</text>
+      <text x="536" y="110" class="ts">Transpiration STOPS. No pull means no water</text>
+      <text x="536" y="126" class="ts">rises from the soil. Nutrients that live only</text>
+      <text x="536" y="142" class="ts">in soil-water never reach the leaf at all.</text>
+      <text x="536" y="166" class="tb" fill="#3f6b3a" font-weight="700">&rarr; Nothing arrives = DEFICIENCY</text>
+      <text x="536" y="182" class="ts">interveinal chlorosis, pale new growth</text>
+      <path d="M520,150 Q495,175 505,188" fill="none" stroke="#3f6b3a" stroke-width="2" marker-end="url(#arrow2)"/>
+
+      <!-- bottom lesson -->
+      <rect x="120" y="280" width="600" height="120" rx="10" fill="#1a2621"/>
+      <text x="420" y="312" text-anchor="middle" class="t" fill="#c8912b" font-weight="800" font-size="14">THE FARMER&rsquo;S TRAP</text>
+      <text x="420" y="340" text-anchor="middle" class="tb" fill="#f6f3ea">Both look like &ldquo;a problem with the leaf,&rdquo; so the reflex is to apply MORE.</text>
+      <text x="420" y="362" text-anchor="middle" class="tb" fill="#f6f3ea">In the toxicity case, adding more makes it strictly worse.</text>
+      <text x="420" y="384" text-anchor="middle" class="ts" fill="#cdd8c9">Digestion needs time, and digestion is photosynthesis. Read the weather before you read the leaf.</text>
+    </svg>
+    <figcaption>The transpiration engine. <b>Identical soil, opposite symptoms</b> — driven entirely by evaporative demand. This one diagram is worth the price of the course.</figcaption>
+  </figure>
+
+  <p>Trace each side carefully. In fierce heat, transpiration runs so hard that water floods out of the leaf and salts accumulate at the tip and margin faster than the plant&rsquo;s slowed-down photosynthesis can assimilate them. The result is marginal scorch and necrosis — <em>toxicity</em>. In cool overcast weather the opposite: transpiration nearly stops, so almost no water rises from the soil, so the nutrients that live only in soil-water never arrive, and the leaf yellows — <em>deficiency</em>. The farmer, seeing a sick leaf, reaches for more of something in both cases. In the toxicity case that is exactly wrong: he is adding to a pile that is already too high. Gore&rsquo;s line — &ldquo;the nutrient must arrive, but then it must get <em>time to be digested</em>, and digestion is photosynthesis&rdquo; — is the correct and elegant summary.</p>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — the drip line that lies</div>
+    <p>Two Bhagwa blocks, identical soil test, identical drip schedule. In April, block A&rsquo;s young leaves scorch at the margins; the manager reads &ldquo;salt/nutrient burn&rdquo; and, worried, doubles the fertigation to &ldquo;push through it.&rdquo; The scorch worsens within a week. What actually happened: 44&deg;C afternoons and 12% humidity drove transpiration so hard that salts concentrated at the leaf edge; the extra fertigation added salt to an already over-loaded margin. The correct move was the opposite — cut the fertigation, irrigate more frequently in smaller pulses to dilute the root-zone solution, and shade or mist to lower the evaporative demand. The leaf was not hungry. It was drowning in its own delivery.</p>
+  </div>
+
+  <div class="box correct">
+    <div class="h">&#9650; Correction — one loose figure and one over-claim</div>
+    <p>Gore says nitrogen is &ldquo;78% of the atmosphere, given free by nature.&rdquo; True for the gas, but plants cannot use atmospheric N₂ directly — it must be fixed by bacteria (or applied), which is exactly why the biology session matters. And his list of &ldquo;mineral nutrients&rdquo; in this session slips in <em>aluminium</em> and <em>sodium</em> as if they were plant nutrients: aluminium is a toxicity concern in acid soils, not a nutrient, and sodium is only beneficial to a few specific crops. The transpiration model itself is sound; just don&rsquo;t take the element list as a nutrition checklist.</p>
+  </div>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula</div>
+    <p>This is the lesson that will save your block real money and real trees. On a semi-arid site your evaporative demand is extreme for much of the year, so the <em>toxicity</em> failure mode is your default risk — leaf-margin scorch that looks like deficiency and tempts more fertigation. Build two habits: (1) <strong>read the weather before diagnosing any leaf</strong> — a scorched margin in a 44&deg;C, 10%-humidity week is almost always concentration, not hunger; (2) <strong>irrigate in frequent small pulses</strong> rather than long infrequent sets, to keep the root-zone solution dilute and moving. Combined with the low-EC water target from Fundamental 8, this is your main defence against salt-driven toxicity.</p>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== FUNDAMENTAL 5 ===================== -->
+<section class="fund" id="f5">
+<div class="wrap">
+  <div class="fnum">5</div>
+  <h2>Soil is alive, not a container
+    <span class="marathi">माती जिवंत आहे</span>
+  </h2>
+  <p class="standfirst">A reframing lesson: soil is not an inert medium you fill with chemicals, but a living body that can be healthy, ill, or dead. &ldquo;Not infertile — ill. And illness needs a caring hand, not more expense.&rdquo;</p>
+
+  <p>After the hard chemistry of Fundamental 4, this session steps back to change your relationship with the soil itself. Gore&rsquo;s definition of soil is functional: it is the part of the earth&rsquo;s land — where snow does not fall, where sunlight reaches, and where the temperature, moisture, wind and rain a plant needs are available — in which plants form well. But the real content is the claim that <strong>soil is alive</strong>. It gives birth to plants; plants feed us; therefore the soil is, in a real sense, the source of our own bodies. From this he draws the working conclusion that matters: a degraded soil is not <em>dead</em> and not permanently <em>infertile</em> — it is <em>ill</em>, and illness is treatable. &ldquo;She does not want expense; she only needs a caring hand.&rdquo;</p>
+
+  <p>There is a genuine scientific spine under the poetry. A living soil holds a large population of microbes, fungi, protozoa, nematodes and earthworms, and it is that community — not the mineral fraction alone — that performs the ion-grinding of Fundamental 4 and the nutrient cycling of Fundamental 7. When you kill the community (with concentrated salts, broad-spectrum copper, repeated deep tillage), the soil stops functioning even though the minerals remain. Reviving it is largely a matter of restoring organic carbon and stopping the killing — which is why the treatment is cheap and slow, not expensive and fast.</p>
+
+  <div class="box quote">
+    <div class="h">&#9670; The reframe to keep</div>
+    <p><strong>Degraded soil is ill, not dead. The stock is intact; the living machinery that delivers it has stalled. Treatment is restoration of biology and carbon — a caring hand over time — not a bigger chemical bill.</strong></p>
+  </div>
+
+  <h3><span class="tag">The honest soil-test caution</span>Read the report as a system, not a red-flag list</h3>
+  <p>Unusually for a trainer, Gore warns <em>against</em> over-reacting to a soil test. His analogy is a healthy person who takes a blood test on a whim, sees one high number, and panics onto medication. A lab can flag one nutrient as &ldquo;high&rdquo; while an interacting nutrient quietly balances it — which is exactly why the crop was doing fine. His instruction is to read the report as an interacting system, and to learn what each number means before acting. This is genuinely good advice and it connects forward to the antagonism idea in Fundamental 9.</p>
+
+  <p>He also flags <strong>petiole testing</strong> — sampling the leaf stalk rather than the soil — as the best practice in grapes, now extended to pomegranate. This is important for you specifically: on calcareous soil, soil-extractable numbers overstate what the plant can actually get, so tissue testing is often a truer guide to real uptake.</p>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — the &ldquo;high potassium&rdquo; false alarm</div>
+    <p>A soil report comes back with potassium flagged in red as &ldquo;very high.&rdquo; The instinct is to stop all K and perhaps correct it. But the same report shows magnesium and calcium comfortably adequate, and the crop looks healthy. Read as a system, there is nothing to fix — the K is high but balanced, and uptake is fine. Read as a red-flag list, the farmer stops K, the balance tips, and a magnesium or boron problem he never had begins to appear. The lesson: a single number is a word; fertility is the sentence. Never act on one word.</p>
+  </div>
+
+  <div class="box correct">
+    <div class="h">&#9650; Correction — three claims to hold loosely</div>
+    <p>The reframe is sound, but three flourishes are not: (1) <em>&ldquo;If you have earthworms you don&rsquo;t need a soil test&rdquo;</em> — earthworms indicate biological activity, but say nothing about pH, sodicity or free lime, which are exactly your binding constraints. (2) <em>&ldquo;Ayurveda is Indian because India has every climate&rdquo;</em> — climatic diversity is real; the causal story is nationalism, not botany. (3) The gut-microbe mass figure he cites (1.2&ndash;1.4 kg) sits at the high end of published estimates. None of these affects the core reframe, which stands on its own.</p>
+  </div>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula</div>
+    <p>Take the reframe (soil is ill, treatable, cheaply) and the two practical tools (read reports as a system; use petiole testing), and <em>ignore</em> the &ldquo;earthworms mean no test needed&rdquo; rule — that is a dangerous shortcut on calcareous ground where free lime and sodium are the real questions and earthworms tell you nothing about either. Concretely: establish a <strong>petiole/leaf sampling baseline before planting</strong>, so you have a reference series to read tissue tests against once the orchard matures. And one thing worth chasing directly: Gore claims he moved a hardset soil at <strong>22% free lime</strong> to friable within two years through organic matter alone. That is almost exactly your situation — treat it as an unverified claim to test, and if you can, ask him for the before/after soil reports and the inputs used.</p>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== FUNDAMENTAL 6 ===================== -->
+<section class="fund" id="f6">
+<div class="wrap">
+  <div class="fnum">6</div>
+  <h2>The physical soil — water and air
+    <span class="marathi">भौतिक गुणधर्म</span>
+  </h2>
+  <p class="standfirst">Texture, structure, colour, and the five ways water behaves in soil. The headline: drainage is the single most important physical property, because where water cannot leave, salt stays and kills the land.</p>
+
+  <p>Soil has three property sets — physical, biological, chemical — and this session covers the physical: the things you can largely see and feel. Texture (the sand/silt/clay mix), structure (how particles clump), colour (which signals mineral and organic content), and above all how water moves through it. Gore organises water behaviour into five terms, and getting these clear is the foundation for every irrigation decision you will make.</p>
+
+  <figure>
+    <svg viewBox="0 0 840 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of the five soil-water processes">
+      <style>
+        .wt{font-family:'Helvetica Neue',Arial,sans-serif;fill:#1a2621}
+        .wh{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:13px}
+        .wb{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11.5px;fill:#3d4a43}
+      </style>
+      <text x="30" y="30" class="wt" font-weight="800" font-size="15">THE FIVE WAYS WATER BEHAVES IN SOIL</text>
+
+      <!-- 1 infiltration -->
+      <g>
+        <rect x="30" y="50" width="250" height="120" rx="10" fill="#eef1f2" stroke="#3a6d78" stroke-width="1.5"/>
+        <text x="46" y="76" class="wh" fill="#3a6d78">1 &middot; INFILTRATION</text>
+        <text x="46" y="98" class="wb">Water ENTERING the soil surface.</text>
+        <text x="46" y="116" class="wb">Fast in sand/gravel &rarr; but that also</text>
+        <text x="46" y="132" class="wb">means fertiliser LEACHES straight</text>
+        <text x="46" y="148" class="wb">through. Slow in clay &rarr; runoff risk.</text>
+      </g>
+      <!-- 2 percolation -->
+      <g>
+        <rect x="300" y="50" width="250" height="120" rx="10" fill="#eef1f2" stroke="#3a6d78" stroke-width="1.5"/>
+        <text x="316" y="76" class="wh" fill="#3a6d78">2 &middot; PERCOLATION</text>
+        <text x="316" y="98" class="wb">Water moving DOWN through</text>
+        <text x="316" y="116" class="wb">saturated soil under gravity.</text>
+        <text x="316" y="132" class="wb">(Gore&rsquo;s spoken version described</text>
+        <text x="316" y="148" class="wb">sideways capillary flow &mdash; corrected.)</text>
+      </g>
+      <!-- 3 saturation -->
+      <g>
+        <rect x="570" y="50" width="240" height="120" rx="10" fill="#fbeee9" stroke="#a8432a" stroke-width="1.5"/>
+        <text x="586" y="76" class="wh" fill="#a8432a">3 &middot; SATURATION</text>
+        <text x="586" y="98" class="wb">ALL pores full of water,</text>
+        <text x="586" y="116" class="wb">no air left. Sustained =</text>
+        <text x="586" y="132" class="wb">root rot, damping-off,</text>
+        <text x="586" y="148" class="wb">wilt. The danger state.</text>
+      </g>
+      <!-- 4 vaapsa (hero) -->
+      <g>
+        <rect x="120" y="200" width="600" height="130" rx="12" fill="#3f6b3a"/>
+        <text x="140" y="230" class="wh" fill="#c8912b" font-size="15">4 &middot; V&#256;PS&#256; &mdash; the target state (no clean English word)</text>
+        <text x="140" y="258" class="wb" fill="#eaf3e6" style="font-size:13px">The ideal condition: BIG pores hold AIR, SMALL pores hold WATER, at the same time.</text>
+        <text x="140" y="282" class="wb" fill="#eaf3e6" style="font-size:13px">Roots get moisture AND oxygen together. This is field capacity with proper aeration.</text>
+        <text x="140" y="308" class="wb" fill="#c8912b" style="font-size:13px;font-weight:700">Every irrigation decision should be aiming to sit at v&#257;ps&#257;. This is the sharpest idea in the session.</text>
+      </g>
+      <!-- 5 leaching -->
+      <g>
+        <rect x="290" y="350" width="260" height="100" rx="10" fill="#fbeee9" stroke="#a8432a" stroke-width="1.5"/>
+        <text x="306" y="376" class="wh" fill="#a8432a">5 &middot; LEACHING</text>
+        <text x="306" y="398" class="wb">Nutrient- and salt-bearing water</text>
+        <text x="306" y="414" class="wb">moving BELOW the root zone.</text>
+        <text x="306" y="432" class="wb">Loses your fertiliser &mdash; but is also</text>
+      </g>
+      <text x="306" y="464" class="wb" fill="#3f6b3a" font-weight="700">…the deliberate mechanism that flushes salt out on saline ground.</text>
+    </svg>
+    <figcaption>The five water processes. <b>V&#257;ps&#257;</b> (state 4) is the one to aim for and the one with no English name — air and water sharing the pore space. Leaching is a villain for nutrients but a tool for salt control.</figcaption>
+  </figure>
+
+  <p>Two of these deserve extra weight. <strong>Vāpsā</strong> — Gore&rsquo;s definition of air in the large pores and water in the small pores <em>simultaneously</em> — is the sharpest single concept in the physical session and has no clean English equivalent. It is essentially field capacity plus adequate aeration, and it is the condition a good irrigator is always trying to sit at: enough water for uptake, enough air for the roots and aerobic microbes to breathe. Over-irrigate and you slide into saturation (root rot); under-irrigate and the plant starves. Vāpsā is the narrow band between.</p>
+
+  <p>And <strong>leaching</strong> is a two-faced process you must understand precisely because your site depends on it. For nutrients it is a loss — water carries your nitrate and sulphate below the roots. But for <em>salt</em>, controlled leaching is the only way to flush accumulated salts out of the root zone. On a saline, semi-arid site you will deliberately over-irrigate at intervals to push salt down and out. The skill is separating the two: keep routine irrigation tight to avoid nutrient leaching, then apply an occasional deliberate leaching fraction to manage salt.</p>
+
+  <div class="box keypoint">
+    <div class="h">&#9670; The headline of the session</div>
+    <p><strong>Drainage is the most important physical property land has.</strong> Where water cannot leave, salt cannot leave — it deposits and concentrates until the land becomes unusable. On a semi-arid, borewell-irrigated block this is not a footnote; it is the master risk. Design drainage <em>before</em> the planting layout, never after.</p>
+  </div>
+
+  <div class="box correct">
+    <div class="h">&#9650; Corrections in this session</div>
+    <p>Two things to fix as you absorb it. <strong>(1)</strong> Gore&rsquo;s <em>spoken</em> definition of percolation described moisture moving sideways into adjacent dry soil — that is capillary movement, not percolation. His own slide (downward flow through saturated soil) is the correct definition; trust the slide. <strong>(2)</strong> &ldquo;You cannot improve sodic soil&rdquo; is too absolute — sodic soils <em>are</em> reclaimable with gypsum plus a leaching fraction plus drainage. What is true is that organic matter <em>alone</em> will not fix sodicity; it needs the calcium amendment. He also quotes his own free-lime figure as 22% in one session and 25% in another — a small inconsistency in an anecdote he uses as proof.</p>
+  </div>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — the same rain, two soils</div>
+    <p>Three inches of rain falls in two hours on two neighbouring fields. Field A is light and sandy (high infiltration): the water sinks straight down and keeps going — good, no runoff, but it carries the soluble nitrogen below the roots with it (leaching loss). Field B is heavy clay (low infiltration): the water cannot enter fast enough, sheets across the surface, and carries the fertile topsoil away as silt (erosion loss). Neither field &ldquo;kept&rdquo; the rain. The fix is different for each — sand needs organic matter to hold water and nutrients higher up; clay needs structure and surface cover to slow the water and let it soak. Same weather event, opposite management, because the physical property is opposite.</p>
+  </div>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula</div>
+    <p>This is one of the two most decision-critical sessions for your block. Act on it in this order before you commit the planting layout:</p>
+    <ul class="clean">
+      <li><strong>Measure infiltration rate directly</strong> (a ring infiltrometer, even a single-ring approximation). This sets your irrigation set duration and tells you whether nitrate leaching is a live risk.</li>
+      <li><strong>Design the drainage first.</strong> On a semi-arid, borewell-irrigated site with salt in the water, &ldquo;no drainage &rarr; salt deposits &rarr; land lost&rdquo; is the failure that ends orchards. This decision is expensive to reverse once trees are in.</li>
+      <li><strong>Plan a deliberate leaching fraction</strong> into the irrigation schedule from year one — routine tight sets to feed, periodic heavier sets to flush salt below the root zone. This only works if the drainage in the point above lets the flushed salt actually leave.</li>
+      <li><strong>Bund for intense rainfall</strong> — short violent storms are exactly when your topsoil and applied nutrients wash away.</li>
+    </ul>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== FUNDAMENTAL 7 ===================== -->
+<section class="fund" id="f7">
+<div class="wrap">
+  <div class="fnum">7</div>
+  <h2>The biological soil — the food web
+    <span class="marathi">जैविक गुणधर्म</span>
+  </h2>
+  <p class="standfirst">The living community that turns dead stock into available food — and the two things that destroy it: concentrated chemicals and broken crop rotation. Contains the single most useful piece of arithmetic in the course.</p>
+
+  <p>Every organism class in the soil — fungi, nematodes, insects, bacteria — comes in both harmful and beneficial forms. This is the structural point: the category is not good or bad, only the species within it. A living soil is one where the beneficial forms dominate and, by occupying the space, keep the harmful ones out. Gore lists the beneficial workhorses you will meet as biofertilisers: nitrogen-fixers (<em>Rhizobium, Azotobacter, Azospirillum, Acetobacter</em>), phosphorus-solubilisers (<em>Bacillus, Pseudomonas</em>), a potash-mobiliser (<em>Frateuria aurantia</em>), a zinc-solubiliser (<em>Bacillus megaterium</em>), and calcium mobilisers (the <em>Bacillus</em> group).</p>
+
+  <h3><span class="tag">The living chain</span>Why earthworms are the field test</h3>
+  <p>The community works as a chain, each level depending on the one below. Gore&rsquo;s shorthand — and it is a reasonable simplification of the real soil food web — runs like this, and it gives you a free field diagnostic:</p>
+
+  <figure>
+    <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The soil food web chain from organic carbon to earthworms">
+      <defs><marker id="ar7" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3f6b3a"/></marker></defs>
+      <style>.c7{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:700;fill:#fff}.s7{font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;fill:#3d4a43}</style>
+      <g>
+        <rect x="10" y="70" width="120" height="54" rx="8" fill="#6b4f33"/><text x="70" y="94" text-anchor="middle" class="c7">Organic</text><text x="70" y="110" text-anchor="middle" class="c7">carbon</text>
+        <line x1="130" y1="97" x2="152" y2="97" stroke="#3f6b3a" stroke-width="2" marker-end="url(#ar7)"/>
+        <rect x="156" y="70" width="120" height="54" rx="8" fill="#5c9350"/><text x="216" y="94" text-anchor="middle" class="c7">Living</text><text x="216" y="110" text-anchor="middle" class="c7">bacteria</text>
+        <line x1="276" y1="97" x2="298" y2="97" stroke="#3f6b3a" stroke-width="2" marker-end="url(#ar7)"/>
+        <rect x="302" y="70" width="110" height="54" rx="8" fill="#5c9350"/><text x="357" y="100" text-anchor="middle" class="c7">Fungi</text>
+        <line x1="412" y1="97" x2="434" y2="97" stroke="#3f6b3a" stroke-width="2" marker-end="url(#ar7)"/>
+        <rect x="438" y="70" width="110" height="54" rx="8" fill="#5c9350"/><text x="493" y="100" text-anchor="middle" class="c7">Protozoa</text>
+        <line x1="548" y1="97" x2="570" y2="97" stroke="#3f6b3a" stroke-width="2" marker-end="url(#ar7)"/>
+        <rect x="574" y="70" width="120" height="54" rx="8" fill="#5c9350"/><text x="634" y="94" text-anchor="middle" class="c7">Beneficial</text><text x="634" y="110" text-anchor="middle" class="c7">nematodes</text>
+        <line x1="694" y1="97" x2="716" y2="97" stroke="#3f6b3a" stroke-width="2" marker-end="url(#ar7)"/>
+        <rect x="720" y="70" width="90" height="54" rx="8" fill="#3f6b3a"/><text x="765" y="94" text-anchor="middle" class="c7">Earth-</text><text x="765" y="110" text-anchor="middle" class="c7">worms</text>
+      </g>
+      <text x="410" y="30" text-anchor="middle" font-family="Helvetica Neue,Arial" font-size="13" font-weight="800" fill="#1a2621">THE SOIL FOOD WEB &mdash; EACH LEVEL FEEDS THE NEXT</text>
+      <text x="410" y="160" text-anchor="middle" class="s7">Earthworms sit at the top. So: if you can find earthworms, the whole chain beneath them is alive &mdash; a free field test for biological fertility.</text>
+      <text x="410" y="178" text-anchor="middle" class="s7" fill="#a8432a">But note: earthworm presence tells you nothing about pH, salts or free lime &mdash; the chemical questions still need a lab.</text>
+    </svg>
+    <figcaption>The living chain. <b>Earthworms are the visible top of an invisible pyramid</b> — a genuinely useful, cost-free indicator of biological life, but not a substitute for a chemical soil test.</figcaption>
+  </figure>
+
+  <h3><span class="tag">The best arithmetic in the course</span>Why soil-applied chemicals breed resistance</h3>
+  <p>This is the section to read twice. Gore works through what actually happens when you drench a chemical through drip, and the numbers expose a practice most farmers never question. Follow it:</p>
+
+  <table class="data">
+    <thead><tr><th>Step</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Dripper discharge</td><td class="num">8 L / hour</td></tr>
+      <tr><td>Irrigation run</td><td class="num">2 hours</td></tr>
+      <tr><td>Water delivered per emitter</td><td class="num">16 L</td></tr>
+      <tr><td>Label rate of the chemical</td><td class="num">2 ml / L</td></tr>
+      <tr><td>Chemical needed to treat one emitter&rsquo;s wetted zone</td><td class="num">32 ml</td></tr>
+      <tr><td>Emitters per acre (say)</td><td class="num">1,000</td></tr>
+      <tr><td><strong>Chemical required to genuinely treat one acre</strong></td><td class="num">32 litres</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Nobody applies 32 litres.</strong> What actually happens is that a fixed dose — say 50&nbsp;ml — is drenched at the head of the line and then diluted by the whole irrigation stream. The concentration that reaches the target pathogen or pest is therefore a tiny fraction of the label rate. Two conclusions follow, and both are correct:</p>
+
+  <ol class="clean">
+    <li><strong>Sub-lethal exposure breeds resistance.</strong> You are not killing the organism; you are dosing it with just enough to select for the individuals that tolerate the chemical. This is textbook resistance management, arrived at from first principles.</li>
+    <li><strong>The internal-consistency test.</strong> If the pathogen dies at the concentration that survives all that dilution, then the <em>foliar</em> rate being sold to you is far higher than necessary. This is a genuinely sharp test you can apply to any advisor&rsquo;s recommendation.</li>
+  </ol>
+
+  <div class="box keypoint">
+    <div class="h">&#9670; The rule worth carrying to every purchase</div>
+    <p><strong>Before buying any soil-applied product, do the arithmetic: emitter discharge &times; run time &times; emitter count. It will almost always show the recommendation cannot work as described — and that you are either wasting the product or breeding resistance with it.</strong></p>
+  </div>
+
+  <h3><span class="tag">The two soil-biology killers</span>Broken rotation and broad-spectrum copper</h3>
+  <p>Gore names two habits that destroy the food web. The first is <strong>continuous monocropping</strong> — tomato after tomato, sugarcane after sugarcane. Each crop leaves behind the specific pathogens that attack it; plant the same crop again and you are feeding an established disease population. The traditional fix is <em>bevad</em> (rotation): a following crop that is not a host lets the previous crop&rsquo;s pathogens starve. The second killer is <strong>copper</strong>. Copper is broad-spectrum, contact-acting, and persistent — it releases cuprous ions that kill fungi and bacteria indiscriminately, good and bad alike, and it never degrades. Habitual prophylactic copper spraying is one of the surest ways to sterilise a soil, and — a point Gore doesn&rsquo;t make but which follows from his own logic — this is true in organic systems too.</p>
+
+  <div class="box correct">
+    <div class="h">&#9650; Corrections and one contradiction</div>
+    <p><strong>The aerobic/anaerobic reversal.</strong> In the physiology session Gore stated flatly that anaerobic organisms are harmful; here he says there are beneficial bacteria that thrive without air, and sells the EM (&ldquo;effective microorganisms&rdquo;) product on that basis. The Part 7 version is the accurate one, but note the contradiction — and note that EM&rsquo;s evidence base is genuinely weak. Treat &ldquo;EM eats the soil and lets air in&rdquo; as a product pitch, not established science. <strong>&ldquo;Nitrifiers aren&rsquo;t there at all in our soil&rdquo;</strong> is overstated — they are near-ubiquitous but suppressed by low pH, low carbon and waterlogging. <strong>&ldquo;Chemicals can never control soil pests&rdquo;</strong> — his arithmetic proves that <em>drench-then-dilute</em> fails, not that the whole category is impossible.</p>
+  </div>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — the copper habit that empties a soil</div>
+    <p>A grower sprays copper oxychloride prophylactically every 15 days &ldquo;to keep disease away,&rdquo; and drenches a little into the soil for good measure. Two years on, his fungicide bills keep rising and disease keeps returning — because he has killed the beneficial fungi (including the mycorrhizae that were feeding his roots) and the bacteria that suppressed the pathogens, leaving bare ecological space that the fast-colonising harmful species fill first. He is now on a treadmill: every spray clears the ground for the next outbreak. The neighbour who sprayed only on confirmed infection, kept a cover crop, and never soil-drenched copper has a living soil and a fraction of the bill. The copper wasn&rsquo;t protecting the crop; it was clearing the field for its enemies.</p>
+  </div>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula</div>
+    <p>The highest-value action here is free and comes <em>before</em> planting: <strong>get the full cropping history of the ground.</strong> If groundnut, chickpea, tur, cotton or solanaceous crops were grown there, assume a <em>Fusarium</em> and nematode background and plan for it. (A technical note: chickpea Fusarium won&rsquo;t itself attack pomegranate — <em>Fusarium oxysporum</em> is host-specific at the strain level — but chlamydospores persist for years, and Phytophthora and root-knot nematodes genuinely are cross-pathogenic.) Then: <strong>run the drencher arithmetic on every soil-applied product</strong> before purchase; <strong>never soil-drench copper</strong>; and <strong>treat EM as unproven</strong> — if the soil is compact, fix it with organic matter, deep-rooted cover crops and controlled traffic, which have real evidence behind them.</p>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== FUNDAMENTAL 8 ===================== -->
+<section class="fund" id="f8">
+<div class="wrap">
+  <div class="fnum">8</div>
+  <h2>The chemical soil — pH, EC, CEC
+    <span class="marathi">रासायनिक गुणधर्म</span>
+  </h2>
+  <p class="standfirst">The most decision-relevant session for a calcareous block. pH decides which nutrients unlock; EC decides whether water can enter the root at all; CEC decides how much the soil can hold. And acid cannot fix high-lime soil.</p>
+
+  <p>The chemical properties — pH, EC, organic carbon, CEC, salts, available nutrients, buffering capacity — are the levers that set the size of the available sliver from Fundamental 3. Gore opens with a claim to hold loosely and then quietly walks back himself: that if biology and physics are good, chemistry looks after itself. On most soils there is truth in this — living, well-structured soil does self-regulate. But on <em>calcareous</em> soil, pH is pinned high by the carbonate system and biology will not move it. He effectively concedes this two breaths later when he says Maharashtra&rsquo;s problem is high pH that must be actively managed. Hold the corrected version: <strong>on high-lime ground, chemistry is not optional.</strong></p>
+
+  <h3><span class="tag">pH</span>The master switch on nutrient availability</h3>
+  <p>pH is the single number that decides which nutrients dissolve and which lock up. Gore&rsquo;s availability cascade is worth keeping in front of you — as pH falls from above 8 down toward 6.5, more and more nutrients come online:</p>
+
+  <figure>
+    <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="pH availability cascade">
+      <style>.p8{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;fill:#1a2621}.p8h{font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;font-weight:800}.p8s{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;fill:#3d4a43}</style>
+      <text x="30" y="28" class="p8h" fill="#1a2621">AS pH FALLS, MORE NUTRIENTS UNLOCK</text>
+      <!-- the ladder -->
+      <g>
+        <rect x="30" y="46" width="760" height="46" rx="6" fill="#d9d2b8" stroke="#b06a3e"/>
+        <text x="46" y="66" class="p8h" fill="#a8432a">pH above 8.0 &mdash; YOUR SITE</text>
+        <text x="46" y="84" class="p8">Only Calcium, Magnesium, Sulphur freely available. P, Fe, Zn, Mn largely LOCKED.</text>
+      </g>
+      <g>
+        <rect x="30" y="100" width="760" height="42" rx="6" fill="#efeadb" stroke="#c8912b"/>
+        <text x="46" y="120" class="p8h">pH 7.5</text>
+        <text x="120" y="120" class="p8">+ Phosphorus, Potash, Copper, Nitrogen &nbsp;&rarr;&nbsp; now 7 nutrients available</text>
+      </g>
+      <g>
+        <rect x="30" y="150" width="760" height="42" rx="6" fill="#e9ecdf" stroke="#5c9350"/>
+        <text x="46" y="170" class="p8h">pH 7.2</text>
+        <text x="120" y="170" class="p8">+ Boron &nbsp;&rarr;&nbsp; 8 nutrients</text>
+      </g>
+      <g>
+        <rect x="30" y="200" width="760" height="42" rx="6" fill="#e2ecdc" stroke="#3f6b3a"/>
+        <text x="46" y="220" class="p8h">pH 6.5</text>
+        <text x="120" y="220" class="p8">+ Zinc, Manganese, Iron &nbsp;&rarr;&nbsp; the full set becomes available</text>
+      </g>
+      <!-- correction band -->
+      <rect x="30" y="258" width="760" height="66" rx="8" fill="#fbeee9" stroke="#a8432a" stroke-width="1.5"/>
+      <text x="46" y="280" class="p8h" fill="#a8432a">CORRECTED:</text>
+      <text x="150" y="280" class="p8">Gore places COPPER at pH 7.5 with P and K &mdash; wrong. Cu, like Zn/Fe/Mn, unlocks as pH FALLS.</text>
+      <text x="46" y="304" class="p8">And &ldquo;pH doesn&rsquo;t affect molybdenum&rdquo; is backwards: Mo availability RISES with pH &mdash; so on your</text>
+      <text x="46" y="320" class="p8">high-pH ground, molybdenum is the LEAST likely micronutrient to be short.</text>
+    </svg>
+    <figcaption>The pH cascade, with the two errors corrected inline. <b>Your site sits in the top red band</b> — the classic calcareous profile where iron, zinc and phosphorus are locked.</figcaption>
+  </figure>
+
+  <h3><span class="tag">Buffering capacity</span>Why acid will not fix your soil</h3>
+  <p>This is the most important practical point in the session for you, and it saves a recurring, wasted expense. Buffering capacity is the soil&rsquo;s resistance to pH change. On calcareous ground the carbonate system is a powerful buffer: inject sulphuric or phosphoric acid to drop the pH, and the free lime neutralises it, the reaction consumes the acid, and the pH returns — often producing reaction products that harm roots and biology and can harden the soil. <strong>Acid injection into high-lime soil is a cost with a transient effect.</strong> You can acidify the small wetted zone around an emitter briefly, but you cannot move the whole-soil pH by chemistry, and trying is a money pit.</p>
+
+  <h3><span class="tag">EC</span>The salt tax on every drop of water</h3>
+  <p>EC (electrical conductivity) measures dissolved salts. The higher the EC, the harder it is for the plant to pull water in, because it must overcome the osmotic pull of the salty soil solution. Gore&rsquo;s straw analogy is exact: drinking water through a straw is easy; drinking thick lassi through the same straw exhausts you. High-EC water is lassi. And the cruelty is timing — EC rises in summer, precisely when the crop needs water most. From this comes a counter-intuitive rule most farmers get backwards:</p>
+
+  <div class="box keypoint">
+    <div class="h">&#9670; The rule that reverses common practice</div>
+    <p><strong>Low-EC water carries applied nutrients INTO the plant. High-EC water leaves them stranded in the soil. Therefore the higher your water&rsquo;s EC, the LESS fertiliser you should apply — not more.</strong> When a farmer sees deficiency and responds by adding fertiliser to already-salty water, he raises the EC further and drives the nutrients even further out of reach.</p>
+  </div>
+
+  <p>Gore&rsquo;s working target for irrigation water is <strong>EC 0.2 to 1.2 mS/cm</strong>. Chloride fertilisers (MOP) raise EC; nitrate fertilisers raise it more. The rough conversion is <strong>640 TDS &approx; 1 EC</strong> for normal water — though he garbles a second figure for chloride-rich water, so measure EC directly rather than converting.</p>
+
+  <h3><span class="tag">CEC &amp; organic carbon</span>How much the soil can hold, and the master lever</h3>
+  <p>Cation exchange capacity is the soil&rsquo;s holding power for positively-charged nutrients (K, Ca, Mg, Zn, Fe, Cu, Mn, ammonium). These cations cling to the negatively-charged surfaces of clay and organic matter — Gore&rsquo;s magnet-and-iron-filings image is apt. Finer clay and more organic matter mean more surface, more holding power, less leaching. Sandy, low-carbon soil holds little and loses nutrients fast. And this is why he calls <strong>organic carbon &ldquo;the soul of the soil&rdquo;</strong> and spends the most emotion on it: raising organic carbon simultaneously lifts CEC, feeds biology, improves structure, and buffers pH swings. It is the one lever that moves all the others. On calcareous soil it does not reset the pH — but it improves cycling, chelation and structure <em>within</em> the pH the carbonate dictates, which is the honest and valuable version of his claim.</p>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — the FeSO₄ that vanished</div>
+    <p>A manager sees iron chlorosis (yellow leaves, green veins) on his Bhagwa and applies 25 kg of ferrous sulphate to the soil. Nothing changes; the leaves stay yellow. He applies more. Still nothing. What happened: at pH 8.3 the ferrous iron oxidised and precipitated as insoluble iron hydroxide almost immediately — the soil locked it up before a root could reach it, exactly as the pH cascade predicts. The correct approach was never soil FeSO₄ on calcareous ground; it was <strong>Fe-EDDHA</strong>, the one chelate that stays soluble above pH 7.5, or a foliar iron spray that bypasses the soil entirely. The iron wasn&rsquo;t absorbed because the soil chemistry was working exactly as this session describes.</p>
+  </div>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula — this session decides your fertigation strategy</div>
+    <ul class="clean">
+      <li><strong>Expect pH 8.0&ndash;8.5 and design around it.</strong> Iron and zinc chlorosis will show first — the classic calcareous pomegranate profile. Plan for it rather than being surprised by it.</li>
+      <li><strong>Do not budget for acid injection as a pH fix.</strong> The buffering argument is correct — it is a recurring cost with a transient effect on high-lime soil.</li>
+      <li><strong>Use chelated micronutrients, not sulphate salts.</strong> Fe-EDDHA for iron; foliar zinc; foliar boron if soil K climbs. Soil-applied sulphates largely precipitate above pH 7.5.</li>
+      <li><strong>Measure borewell EC against the 0.2&ndash;1.2 target.</strong> In that part of Kadapa district it may well exceed it — if so, build a leaching fraction into irrigation from day one and scale the fertiliser program <em>down</em>, not up.</li>
+      <li><strong>Use SOP, avoid MOP</strong> where water EC is already elevated — accept the cost difference to keep chloride out.</li>
+      <li><strong>Treat organic carbon as your one genuine lever.</strong> It won&rsquo;t move the pH, but it improves everything the pH allows — cycling, chelation, structure, holding capacity.</li>
+    </ul>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== FUNDAMENTAL 9 ===================== -->
+<section class="fund" id="f9">
+<div class="wrap">
+  <div class="fnum">9</div>
+  <h2>Liebig&rsquo;s Law &amp; the meaning of balance
+    <span class="marathi">का घटतं उत्पादन?</span>
+  </h2>
+  <p class="standfirst">Yield is set by the scarcest factor, not the most abundant. Piling on more of a nutrient that is already sufficient does nothing — and often makes things worse, because an excess of one nutrient is a deficiency in another in disguise.</p>
+
+  <p>This is the session where the whole course clicks into a single mechanism, backed by a documented case and hard numbers. Liebig&rsquo;s Law of the Minimum says that growth is limited by the scarcest resource, not the total of all resources. The classic image is a barrel made of staves of different heights: the water (the yield) can only rise to the level of the <em>shortest</em> stave, no matter how tall the others are. Add more of an abundant nutrient — raise a tall stave higher — and the water level does not move. You must find and lengthen the shortest stave.</p>
+
+  <figure>
+    <svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Liebig's barrel with a short stave limiting yield">
+      <style>.b9{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;fill:#1a2621}.b9h{font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;font-weight:800}</style>
+      <text x="380" y="30" text-anchor="middle" class="b9h">THE BARREL HOLDS ONLY TO THE SHORTEST STAVE</text>
+      <!-- barrel staves -->
+      <g stroke="#5a3f27" stroke-width="1">
+        <!-- tall staves -->
+        <rect x="200" y="70" width="34" height="230" fill="#8a6a44"/>
+        <rect x="234" y="60" width="34" height="240" fill="#8a6a44"/>
+        <rect x="268" y="66" width="34" height="234" fill="#8a6a44"/>
+        <!-- SHORT stave -->
+        <rect x="302" y="170" width="34" height="130" fill="#a8432a"/>
+        <rect x="336" y="64" width="34" height="236" fill="#8a6a44"/>
+        <rect x="370" y="72" width="34" height="228" fill="#8a6a44"/>
+        <rect x="404" y="62" width="34" height="238" fill="#8a6a44"/>
+        <rect x="438" y="70" width="34" height="230" fill="#8a6a44"/>
+        <rect x="472" y="66" width="34" height="234" fill="#8a6a44"/>
+      </g>
+      <!-- water level to short stave -->
+      <rect x="200" y="170" width="306" height="130" fill="#3a6d78" opacity="0.55"/>
+      <text x="353" y="240" text-anchor="middle" fill="#fff" class="b9h" font-size="18">YIELD</text>
+      <!-- water spilling -->
+      <path d="M302,170 q-8,20 -18,26 q-6,4 -2,10" fill="none" stroke="#3a6d78" stroke-width="4"/>
+      <!-- labels -->
+      <text x="319" y="164" text-anchor="middle" class="b9" fill="#a8432a" font-weight="700" font-size="10">SHORT</text>
+      <text x="319" y="316" text-anchor="middle" class="b9" fill="#a8432a" font-weight="700" font-size="10">= the</text>
+      <text x="319" y="330" text-anchor="middle" class="b9" fill="#a8432a" font-weight="700" font-size="10">limit</text>
+      <!-- right annotation -->
+      <text x="540" y="120" class="b9" font-weight="700">On your site the</text>
+      <text x="540" y="138" class="b9" font-weight="700">short stave is likely:</text>
+      <text x="540" y="164" class="b9">&bull; Iron / Zinc (locked by pH)</text>
+      <text x="540" y="184" class="b9">&bull; Phosphorus (locked by lime)</text>
+      <text x="540" y="204" class="b9">&bull; Water EC (salt tax)</text>
+      <text x="540" y="224" class="b9">&bull; Drainage</text>
+      <text x="540" y="258" class="b9" fill="#3f6b3a" font-weight="700">Adding N or K here</text>
+      <text x="540" y="276" class="b9" fill="#3f6b3a" font-weight="700">raises a tall stave &mdash;</text>
+      <text x="540" y="294" class="b9" fill="#3f6b3a" font-weight="700">yield does not move.</text>
+    </svg>
+    <figcaption>Liebig&rsquo;s barrel. Find and fix the <b>red stave</b>. On a calcareous, salt-stressed block, the short stave is almost never the nutrient you are tempted to add.</figcaption>
+  </figure>
+
+  <h3><span class="tag">The documented case</span>Nashik grapes and the potash trap</h3>
+  <p>Gore&rsquo;s evidence here is the strongest in the course because it is concrete and checkable. Grape growers were told, to hit export quality, to keep adding potassium — for berry size, sweetness, crunch, and stem strength. Over a decade, soil potassium rose from 300&ndash;400 kg/ha to 1,000&ndash;1,200 kg/ha. And the export quality still failed. Why? Because <strong>excess potassium suppresses boron uptake</strong>, and boron is required for pollination and sugar movement. Piling on the tall stave (K) shortened a different stave (B) they never thought to check. This is the deepest practical idea in the course: <em>an excess is a deficiency in disguise.</em> Potassium is also antagonistic to magnesium and calcium — push one too hard and you create shortages of the others.</p>
+
+  <div class="box keypoint">
+    <div class="h">&#9670; The idea to carry into every fertiliser decision</div>
+    <p><strong>An excess is a deficiency in disguise.</strong> High potassium creates functional boron, magnesium and calcium shortage. Before adding more of any nutrient, ask what its excess will suppress — the problem you are about to create may be worse than the one you are treating.</p>
+  </div>
+
+  <h3><span class="tag">Two spending disciplines</span>Don&rsquo;t pour water into a broken barrel</h3>
+  <p>Gore adds two tests for whether a spray or input is worth the money. The first: <strong>&ldquo;fifty percent cracked means one hundred percent infected.&rdquo;</strong> Once bacterial blight is systemic and the crop is committed, a further spray is throwing good money after a lost crop — the outcome is already decided. The second: <strong>never spray nutrients into a waterlogged, overcast field.</strong> Foliar uptake needs an active transpiration stream and light-driven metabolism; spraying into saturated, sunless conditions wastes the product (this is the transpiration engine from Fundamental 4 applied to spending). Both are sunk-cost discipline: ask whether the result is already determined before you spend.</p>
+
+  <div class="box correct">
+    <div class="h">&#9650; Corrections in this session</div>
+    <p>Two things to hold at arm&rsquo;s length. The pomegranate <em>removal figures</em> he gives (K 3.07 kg, N 2.27 kg, Ca 920 g, P 460 g per tonne of fruit) are plausible for <em>fruit</em> — but fruit removal is not the whole crop requirement. Leaves, wood, root turnover and pruning all draw nutrients too, so using removal figures alone will <em>under</em>-fertilise a young, expanding orchard. Treat them as a floor, not a budget. And his &ldquo;plant makes its own growth regulators, never apply them&rdquo; is too absolute — some PGR uses are well-established within label rates; his real point is against routine, unnecessary application. (Note also the movement-building material in this session — the Sadhguru invitation, the Landmark Forum endorsement — which is context, not agronomy.)</p>
+  </div>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — the boron your potash hid</div>
+    <p>A Bhagwa grower chases fruit size and skin colour by steadily raising potassium through fertigation, season on season. Size improves for a while, then plateaus, and he starts seeing poor fruit set and internal breakdown. He reads &ldquo;need more potassium&rdquo; and pushes harder — the plateau deepens. A petiole test finally shows boron on the floor despite adequate soil boron. The high K had been quietly blocking B uptake for two seasons; the fruit-set failure was a boron problem wearing a potassium costume. The fix was not more K — it was to ease off K and apply <em>foliar</em> boron (bypassing the soil antagonism). Every rupee spent on extra potash had been making the real problem worse.</p>
+  </div>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula — this is your operating framework</div>
+    <ul class="clean">
+      <li><strong>Run the block on Liebig.</strong> Before planting, identify the shortest stave. On your site the candidates are iron/zinc (pH-locked), phosphorus (lime-locked), water EC, and drainage — <em>not</em> nitrogen or potassium. Fixing the wrong stave produces nothing.</li>
+      <li><strong>Watch potassium specifically.</strong> Bhagwa is high-K-demand and the pull to push K for size and colour is exactly the Nashik trap. Monitor boron alongside K; deliver boron foliar if soil K climbs.</li>
+      <li><strong>Use the removal figures as a floor, then add</strong> for frame growth and inefficiency. Petiole testing tells you whether the real budget is right.</li>
+      <li><strong>Adopt the &ldquo;50% cracked&rdquo; rule.</strong> Before any rescue spray, ask if the outcome is already decided — this matters most for bacterial blight, the disease most likely to force the call on your block.</li>
+      <li><strong>Never assume old disease windows still hold</strong> — his &ldquo;every crop is off-season now&rdquo; observation transfers: monitor blight and wilt across the whole season, not a historical risk period.</li>
+    </ul>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== FUNDAMENTAL 10 ===================== -->
+<section class="fund" id="f10">
+<div class="wrap">
+  <div class="fnum">10</div>
+  <h2>Soil testing done right
+    <span class="marathi">माती परीक्षण</span>
+  </h2>
+  <p class="standfirst">The operational session: how to sample so the report is true, why a perennial crop needs a three-layer pit, and why you must sample under the emitter, not between the rows. Contains the single most important pre-planting action for your block.</p>
+
+  <p>A soil test is only as good as the sample, and a wrong report makes every downstream decision wrong — Gore&rsquo;s analogy is a mislabelled HIV result that kills a healthy patient. So this session is about sampling discipline, and it contains two protocols that matter enormously for a perennial planting.</p>
+
+  <h3><span class="tag">Protocol A</span>The three-layer pit — for a perennial, before planting</h3>
+  <p>This is the highest-value single procedure in the entire course for you, and it is <em>not</em> standard extension advice. For an orchard, a 9-inch surface sample is inadequate, because the tree will eventually root three feet down into layers you never tested. So you dig a one-metre (three-foot) pit with a JCB and split it into three one-foot layers, A, B and C. You test <strong>layer A fully</strong> (all nutrients, organic carbon, pH, EC, calcium carbonate) but you test <strong>layers B and C for calcium carbonate alone.</strong> The reason is precise and it is your exact risk: <em>a free-lime layer deep in the profile that does not show in a surface sample will kill the trees in years four to seven, after the entire establishment cost is sunk.</em></p>
+
+  <figure>
+    <svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three-layer pre-planting soil pit protocol">
+      <style>.s10{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;fill:#1a2621}.s10h{font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;font-weight:800}.s10s{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;fill:#3d4a43}</style>
+      <text x="30" y="28" class="s10h">PROTOCOL A &mdash; THREE-LAYER PIT (orchard, pre-planting)</text>
+      <text x="30" y="48" class="s10s">Dig 10 pits, 3 ft deep, across the block &middot; take 1 kg per layer per pit &middot; composite each layer separately</text>
+      <!-- pit cross-section -->
+      <g>
+        <rect x="40" y="70" width="180" height="70" fill="#8a6a44" stroke="#5a3f27"/>
+        <rect x="40" y="140" width="180" height="70" fill="#6b4f33" stroke="#5a3f27"/>
+        <rect x="40" y="210" width="180" height="70" fill="#3e2c1a" stroke="#5a3f27"/>
+        <text x="130" y="110" text-anchor="middle" class="s10h" fill="#fff">A  (0&ndash;1 ft)</text>
+        <text x="130" y="180" text-anchor="middle" class="s10h" fill="#fff">B  (1&ndash;2 ft)</text>
+        <text x="130" y="250" text-anchor="middle" class="s10h" fill="#fff">C  (2&ndash;3 ft)</text>
+      </g>
+      <!-- what to test -->
+      <g>
+        <rect x="260" y="72" width="500" height="66" rx="8" fill="#e2ecdc" stroke="#3f6b3a"/>
+        <text x="278" y="96" class="s10h" fill="#3f6b3a">Layer A &mdash; FULL panel</text>
+        <text x="278" y="118" class="s10">all nutrients + organic carbon + pH + EC + calcium carbonate</text>
+      </g>
+      <g>
+        <rect x="260" y="150" width="500" height="60" rx="8" fill="#f7f0dd" stroke="#c8912b"/>
+        <text x="278" y="174" class="s10h" fill="#9a6f16">Layers B &amp; C &mdash; CaCO&#8323; only</text>
+        <text x="278" y="196" class="s10">just checking for a hidden free-lime layer the roots will hit later</text>
+      </g>
+      <g>
+        <rect x="260" y="222" width="500" height="58" rx="8" fill="#fbeee9" stroke="#a8432a"/>
+        <text x="278" y="246" class="s10h" fill="#a8432a">If lime sits in B or C:</text>
+        <text x="278" y="268" class="s10">don&rsquo;t plant an orchard there &mdash; OR mound/bed-plant to keep roots up top &mdash; OR use a lime-tolerant crop</text>
+      </g>
+      <text x="30" y="312" class="s10s" fill="#a8432a">Ten JCB pits and thirty samples is trivially cheap against losing 2,000 trees in year five. This is the test that decides whether the site is viable.</text>
+    </svg>
+    <figcaption>Protocol A. The <b>deep-lime check (layers B &amp; C)</b> is the whole point — it is the one thing a normal surface test misses and the one thing that can quietly kill a mature orchard.</figcaption>
+  </figure>
+
+  <h3><span class="tag">Protocol B</span>Sample under the emitter, never between the rows</h3>
+  <p>For an established orchard (and for annual crops), a 9-inch V-shaped pit, 500&nbsp;g per pit, 20&ndash;25 pits across a uniform area, composited down to 1&nbsp;kg for the lab. But the critical instruction is <em>where</em> you put the pit. Farmers habitually sample the bare soil between the rows — where they never irrigate or fertilise. That soil reads artificially low, the advisor recommends more fertiliser, and it accumulates in the wetted bulb under the emitter where the roots actually are. The result is the failure mode from Fundamentals 4 and 9: <strong>deficiency symptoms in the canopy, toxicity building in the root zone.</strong> You must sample the wetted zone directly under the dripper, because that is where the tree feeds.</p>
+
+  <div class="box keypoint">
+    <div class="h">&#9670; The two rules that make a soil test true</div>
+    <p><strong>(1) For a new orchard, dig deep and check the lower layers for lime — the surface sample lies about what the roots will meet in year five. (2) For an established orchard, sample under the emitter, never between the rows — the dry inter-row reads low and sends you into over-fertilising the root zone.</strong></p>
+  </div>
+
+  <div class="box correct">
+    <div class="h">&#9650; Corrections and cautions</div>
+    <p><strong>&ldquo;Nutrient deficiency causes disease&rdquo; / &ldquo;disease = incomplete chemical reactions in the plant.&rdquo;</strong> The first half is partly true — poor nutrition predisposes plants to infection. The second is wrong and consequential: bacterial blight, Fusarium wilt and Phytophthora infect well-fed plants; pathogens are causal agents, not just opportunists filling metabolic gaps. Read it as &ldquo;good nutrition substantially reduces disease pressure&rdquo; — <em>never</em> as a substitute for a disease plan. <strong>&ldquo;Skip biological testing, rotation handles it&rdquo;</strong> is fine for annual rotations but unsafe for a perennial site — pathogen survival structures persist for years without a host. Use a stainless or plastic auger (metal contaminates micronutrient readings), and never a fertiliser bag for the sample.</p>
+  </div>
+
+  <div class="box example">
+    <div class="h">&#9670; A worked example — the report that lied by 40 cm</div>
+    <p>A grower takes a textbook surface sample before planting his orchard — 9 inches deep, well composited, sent to a good lab. The report is clean: good pH in the topsoil, adequate everything. He plants 400 trees. For three years they thrive. In year five they begin to yellow, stall, and die back one by one along the lower slope. A dug pit reveals a hard calcareous layer at 60 cm that the surface sample never touched; as the roots reached it, they failed. The trees were killed by a problem that was present at planting, sitting 40 cm below where he sampled. Protocol A&rsquo;s deep-lime check — thirty extra samples — would have caught it before a single tree went in.</p>
+  </div>
+
+  <div class="box puli">
+    <div class="h">&#9670; For Pulivendula — your pre-planting action list</div>
+    <ol class="clean">
+      <li><strong>Do Protocol A first, before anything else.</strong> Ten JCB pits, three feet, three layers. Test A fully; test B and C for CaCO&#8323;. This single test decides whether the block takes Bhagwa at all, and what the planting geometry must be.</li>
+      <li><strong>Add a nematode assay</strong> — the rotation argument doesn&rsquo;t cover a perennial planting, and root-knot nematode is a real Bhagwa risk.</li>
+      <li><strong>Run the water test in parallel</strong> — EC, TDS, SAR, RSC, chloride, boron (the salt questions from Fundamentals 4, 6 and 8).</li>
+      <li><strong>Record the full metadata with every sample</strong> — survey number, drainage class, soil-depth class, slope, irrigation source, previous crop and fertiliser history. Start your ten-year file <em>now</em>, before planting, so you have a true baseline.</li>
+      <li><strong>Once established, sample under the emitter</strong> every year or two — never between the rows.</li>
+      <li><strong>Stainless/plastic auger, washed non-fertiliser bag</strong> — so the micronutrient numbers are real.</li>
+    </ol>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+<!-- ===================== CLOSING SYNTHESIS ===================== -->
+<section class="fund" id="synthesis">
+<div class="wrap">
+  <div class="fnum" style="background:var(--gold);color:var(--ink)">&#9733;</div>
+  <h2>Putting the ten together</h2>
+  <p class="standfirst">The ten fundamentals are not ten topics — they are one argument told from ten angles. Here is the spine, and the pre-planting checklist it produces for Pulivendula.</p>
+
+  <p>Read as a whole, the course makes a single claim: <strong>yield is limited not by what you add, but by what the soil can deliver — and delivery is throttled by pH, salt, dead biology, and nutrient antagonism, none of which a bigger fertiliser bag can fix.</strong> Fundamentals 1&ndash;2 set the intent and the training ground. Fundamental 3 defines fertility as delivery, not stock — the master key. Fundamentals 4&ndash;8 are the four delivery throttles, one per session: the transpiration engine (4), the living machinery (5, 7), the physical plumbing (6), and the chemical locks (8). Fundamental 9 (Liebig) is the operating logic that ties them together — find the shortest stave. And Fundamental 10 is how you measure where you actually stand.</p>
+
+  <div class="box keypoint">
+    <div class="h">&#9670; The one-line version</div>
+    <p><strong>Feed the soil, not the crop; measure before you spend; find and fix the shortest stave; and on calcareous ground, chemistry is the constraint that biology cannot overrule.</strong></p>
+  </div>
+
+  <h3><span class="tag">The consolidated Pulivendula action list</span>Everything the ten sessions point to, in order</h3>
+  <table class="data">
+    <thead><tr><th>When</th><th>Action</th><th>From</th></tr></thead>
+    <tbody>
+      <tr><td class="num">Now</td><td><strong>Protocol A three-layer soil pit</strong> — 10 pits, deep-lime check in layers B &amp; C. Decides site viability.</td><td>F10</td></tr>
+      <tr><td class="num">Now</td><td><strong>Full water test</strong> — EC, TDS, SAR, RSC, chloride, boron.</td><td>F4, 6, 8</td></tr>
+      <tr><td class="num">Now</td><td><strong>Nematode assay</strong> + full <strong>cropping history</strong> of the ground (Fusarium / root-knot risk).</td><td>F7, 10</td></tr>
+      <tr><td class="num">Pre-plant</td><td><strong>Design drainage first</strong>, then the planting layout. Plan a leaching fraction into irrigation.</td><td>F6</td></tr>
+      <tr><td class="num">Pre-plant</td><td><strong>Grow &amp; incorporate green manure</strong> (sunn hemp / dhaincha) to lift organic carbon.</td><td>F2, 8</td></tr>
+      <tr><td class="num">Pre-plant</td><td><strong>Establish a petiole/leaf sampling baseline</strong> for later tissue testing.</td><td>F5</td></tr>
+      <tr><td class="num">Design</td><td><strong>Fertigation plan built for pH 8+:</strong> Fe-EDDHA not FeSO&#8324;, SOP not MOP, low-EC target, foliar Zn/B.</td><td>F8, 9</td></tr>
+      <tr><td class="num">Ongoing</td><td><strong>Irrigate in frequent small pulses</strong> to hold v&#257;ps&#257; and dilute the root-zone salt.</td><td>F4, 6</td></tr>
+      <tr><td class="num">Ongoing</td><td><strong>Read the weather before diagnosing any leaf</strong> — scorch in a hot dry week is concentration, not hunger.</td><td>F4</td></tr>
+      <tr><td class="num">Ongoing</td><td><strong>Watch boron alongside potassium</strong> — an excess of K is a B deficiency in disguise.</td><td>F9</td></tr>
+      <tr><td class="num">Ongoing</td><td><strong>Run the drencher arithmetic</strong> before buying any soil-applied product; never soil-drench copper.</td><td>F7</td></tr>
+      <tr><td class="num">Ongoing</td><td><strong>Sample under the emitter</strong>, keep permanent cover, cut don&rsquo;t uproot, maintain a real disease plan.</td><td>F2, 7, 10</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box quote">
+    <div class="h">&#9670; A closing note on the source</div>
+    <p>B. T. Gore&rsquo;s course is strongest where it is mechanistic — the transpiration engine, the drencher arithmetic, Liebig, the buffering argument, the pH cascade. It is weakest where it turns absolute (&ldquo;never use fungicide,&rdquo; &ldquo;chemistry looks after itself,&rdquo; &ldquo;disease is only incomplete chemistry&rdquo;) or where a product or a movement is being sold. This document keeps the mechanisms, corrects the absolutes, and reads all of it against a calcareous, semi-arid, borewell-fed block — which is the one context in which his &ldquo;biology fixes everything&rdquo; instinct is least true and his &ldquo;measure delivery, not stock&rdquo; instinct is most valuable.</p>
+  </div>
+  <a class="top" href="#top">&uarr; contents</a>
+</div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <b>Plant Nutrition Mastery — In-Depth Field Reference.</b><br>
+    A teaching reconstruction of the B. T. Gore Nutrition Mastery course, prepared as a personal reference and read throughout against the Pulivendula Bhagwa pomegranate project (4 acres, ~2,000 trees, target planting Nov–Dec 2027; calcareous, semi-arid, borewell-irrigated).<br><br>
+    Diagrams and worked examples in this document were built for this reference and are not part of the original course material. Where the science here differs from the course, the science is correct and the difference is stated in the text.
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.08});
+  document.querySelectorAll('section.fund').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
